@@ -1,0 +1,238 @@
+/* OUTER SOFT BACKGROUND */
+.outer {
+  /* background: #e7dfd1; */
+  padding: 10px 10px;
+}
+
+.about {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+  color: #222;
+  background: white;
+  border-radius: 60px;
+}
+
+/* HEADER */
+.header p {
+  color: #777;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.header h2 {
+  font-size: 34px;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.header .description {
+  color: #555;
+  font-size: 16px;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* GREEN CARD */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 70px;
+  
+}
+
+.card {
+  position: relative;
+  background: #008080;
+  width: 600px;
+  height: 180px;
+  border-radius: 22px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+.item p{
+   color:#e8fffb;
+}
+
+/* Positions */
+.topLeft {
+  position: absolute;
+  top: 28px;
+  left: 35px;
+}
+
+.topRight {
+  position: absolute;
+  top: 28px;
+  right: 35px;
+}
+
+.bottomCenter {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 90px;
+}
+
+/* VISION MISSION */
+.visionMission {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/* CENTER LINE */
+.visionMission::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 120px;
+  background: #ddd;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.box {
+  width: 320px;
+  text-align: left;
+  padding: 15px 10px;
+}
+
+.box h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #008080;
+}
+
+.box p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* BUTTON */
+.button {
+  background: #008080;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background: #006666;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+  .card {
+    width: 70%;
+    height: 250px;
+    gap:120px;
+  }
+
+  .bottomCenter {
+    flex-direction: column;
+    gap: 20px;
+    bottom: 20px;
+  }
+
+  .topLeft,
+  .topRight {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .topLeft { top: 25px; }
+  .topRight { top: 80px; }
+
+  .visionMission {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .visionMission::after {
+    display: none;
+  }
+
+  .box {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h2 {
+    font-size: 24px;
+  }
+
+  .header .description {
+    font-size: 14px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+@media (max-width: 470px) {
+
+  .card {
+    height: auto;              /* Let height expand automatically */
+    padding: 2px 0;
+  }
+
+  /* Reset all absolute positioning */
+  .topLeft,
+  .topRight,
+  .bottomCenter {
+    position: static;
+    transform: none;
+  }
+
+  /* Turn card into vertical layout */
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;                  /* space between each icon row */
+  }
+
+  /* Make bottom items behave like normal items */
+  .bottomCenter {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .item {
+    justify-content: center;
+    font-size: 15px;
+  }
+}

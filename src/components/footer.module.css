@@ -1,0 +1,134 @@
+.footer {
+    background: #008080;
+    padding: 5px 30px;
+    /* border-radius: 20px; */
+    /* margin: 20px; */
+    color: #e6f2eb;
+  }
+  
+  .inner {
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  /* TOP AREA */
+  .topRow {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .logoSection h3 {
+    margin: 0;
+    color: #53a9a9;
+    letter-spacing: 2px;
+  }
+  
+  /* HEADINGS inside footer */
+.footer h4 {
+  margin-bottom: 12px;
+  color: #b4dfc4;        /* soft mint green */
+  font-size: 16px;
+}
+
+/* NORMAL TEXT inside footer */
+.footer p {
+  margin: 6px 0;
+  font-size: 14px;
+  cursor: pointer;
+  color: #e8fffb;        /* ✅ light text for content */
+  opacity: 0.85;
+}
+
+/* Location / Special text */
+.footer p.location {
+  color: #ffffff;        /* ✅ bright white for location text */
+  font-weight: 500;
+}
+
+  .socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .icons i {
+    margin: 0 4px;
+    cursor: pointer;
+  }
+  
+  .payments img {
+    width: 35px;
+    margin: 0 4px;
+  }
+  
+  /* GRID */
+  .linksGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    padding: 40px 0;
+  }
+  
+  h4 {
+    margin-bottom: 12px;
+    color: #b4dfc4;
+  }
+  
+  p {
+    margin: 6px 0;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  /* SUBSCRIBE */
+  .subscribeBox {
+    display: flex;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 25px;
+    overflow: hidden;
+  }
+  
+  .subscribeBox input {
+    border: none;
+    padding: 10px 15px;
+    outline: none;
+    flex: 1;
+  }
+  
+  .subscribeBox button {
+    background: #68b9b9;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  /* COPYRIGHT */
+  .copy {
+    text-align: center;
+    font-size: 13px;
+    opacity: 0.7;
+    padding-top: 10px;
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .linksGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .topRow {
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .linksGrid {
+      grid-template-columns: 1fr;
+    }
+  }

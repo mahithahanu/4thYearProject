@@ -1,0 +1,131 @@
+.container {
+    width: 100%;
+    padding: 40px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .heading {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+  
+  .heading span {
+    color: #008080;
+  }
+  
+  .wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+  }
+  
+  .imageBox {
+    flex: 1;
+    background: #f3f6ff;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+  }
+  
+  .imageBox img {
+    width: 100%;
+    border-radius: 15px;
+  }
+  
+  .decorCircle {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid #008080;
+  }
+  
+  .stepsArea {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: #fafbff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    position: relative; 
+  }
+  
+  .number {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    transform: rotate(90deg);  
+    background: #f2f2f2;       
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .number span {
+    transform: rotate(-90deg);
+    z-index: 1;
+    width: 32px;
+    height: 32px;
+    background: white;        
+    color: #008080;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .number::after {
+    content: "";
+    position: absolute;
+    width: 60px;        
+    height: 0;          
+    top: 50%;           
+    left: 100%;        
+    transform: translateY(-50%);
+    border-top: 2px dotted #008080;  
+  }
+  
+  .step:last-child .number::after {
+    display: none;
+  }
+  
+  .step h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .step p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: gray;
+  }
+  @media (max-width: 768px) {
+    .wrapper {
+      flex-direction: column;
+      gap: 30px;
+    }
+  
+    .imageBox {
+      width: 80%;
+    }
+  
+    .stepsArea {
+      width: 100%;
+    }
+  }

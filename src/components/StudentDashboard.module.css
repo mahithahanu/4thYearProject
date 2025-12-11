@@ -1,0 +1,242 @@
+.home {
+  width: 100%;
+  min-height: 100vh;
+  background: white;
+  font-family: "Segoe UI", sans-serif;
+  overflow-x: hidden;   /* ✅ ADD THIS */
+}
+
+
+/* NAVBAR */
+.navbar {
+  height: 70px;
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #008080; /* teal */
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.navLinks li {
+  cursor: pointer;
+}
+
+.navBtns {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.loginBtn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #008080;
+  color: white;
+  cursor: pointer;
+}
+
+/* HAMBURGER MENU */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #008080;
+  display: block;
+  border-radius: 2px;
+}
+
+/* MAIN SECTION */
+.mainSection {
+  display: flex;
+  padding: 80px 60px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* LEFT SIDE */
+.left {
+  width: 45%;
+  min-width: 300px;
+}
+
+.left h1 {
+  font-size: 45px;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.left span {
+  color: #008080;
+}
+
+.left p {
+  font-size: 16px;
+  color: #555;
+  width: 85%;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.cta {
+  padding: 12px 26px;
+  background: #008080;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* RIGHT SIDE - CARDS */
+.right {
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.card {
+  height: 100px;
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* CARD COLORS */
+.teal {
+  background: #008080;
+  color: white;
+}
+.teal p{
+  color:#e8fffb;
+}
+
+.white {
+  background: white;
+  border: 1px solid #e6e6e6;
+  color: #333;
+}
+
+.light {
+  background: #e6f9f9;
+  color: #004d4d;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.card p {
+  font-size: 13px;
+  margin-top: 5px;
+  opacity: 0.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .mainSection {
+    padding: 60px 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .mainSection {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+
+  .right {
+    margin-top: 40px;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    width: 200px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .navLinks.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .left h1 {
+    font-size: 32px;
+  }
+
+  .left p {
+    width: 100%;
+  }
+
+  .cta {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .right {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    height: 90px;
+    padding: 15px;
+  }
+}
