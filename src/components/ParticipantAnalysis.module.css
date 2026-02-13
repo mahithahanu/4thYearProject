@@ -1,0 +1,442 @@
+/* Existing styles (unchanged) */
+.wrapper {
+    padding: 20px;
+    background: #f7f9fb;
+  }
+  
+  .search {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid #e3e7ed;
+    outline: none;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 10px;
+    margin: 14px 0 20px;
+  }
+  
+  .filters button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #e3e7ed;
+    background: #fff;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  
+  .advanced {
+    margin-left: auto;
+    background: #009688;
+    color: #003d35;
+    border: none;
+    font-weight: 600;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    min-height: 280px;   /* REQUIRED */
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .chartBox {
+    height: 200px;
+    width: 100%;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .subTitle {
+    font-size: 11px;
+    color: #7b8a9a;
+    letter-spacing: 0.6px;
+  }
+  
+  .header h2 {
+    margin: 4px 0 0;
+  }
+  
+  .badge {
+    background: #e9fff6;
+    color: #1fa37a;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+    
+ /* Participants section layout */
+.participantsSection {
+    margin-top: 20px;
+  }
+  
+  .participantsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  
+  .count {
+    font-size: 12px;
+    color: #6b7280;
+    background: #eef2f6;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  
+  /* Grid layout so cards don’t take full width */
+  .grid {
+    display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  }
+  
+  .participantCard {
+    position: relative; /* Needed for absolute checkbox */
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    border: 1px solid #eef2f6;
+  
+    max-width: 280px;
+    min-height: 190px;
+  
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .checkbox {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    z-index: 5;
+    transform: scale(1.1);
+  }
+  .info h3 {
+    margin: 0;           /* remove default bottom margin */
+    font-size: 14px;    /* optional: slightly tighter */
+  }
+  
+  .info p {
+    margin: 2px 0 0;   
+    font-size: 11px;   
+    line-height: 1.2;
+  }
+    
+  
+  /* Nice hover effect (optional but makes it feel clickable) */
+  .participantCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Make top row clickable feel */
+  .topRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  /* Avatar */
+  .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: #003d35;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+  
+  
+  .info p span {
+    color: #009688;
+    font-weight: 600;
+  }
+  
+  .metricsRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  
+  .metricBox {
+    background: #f9fbfd;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .metricLabel {
+    font-size: 10px;
+    color: #9aa6b2;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  
+  .circleWrap {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+  }
+  
+  .circle {
+    width: 64px;
+    height: 64px;
+    transform: rotate(-90deg);
+  }
+  
+  .bg {
+    fill: none;
+    stroke: #e6ecf2;
+    stroke-width: 3;
+  }
+  
+  .progress {
+    fill: none;
+    stroke: #009688;
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+  
+  .circleText {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  
+  .skillName {
+    font-size: 11px;
+    margin-top: 6px;
+    color: #4b5563;
+    font-weight: 600;
+  }
+  
+  .compatibilityBars {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 4px;
+    height: 48px;
+    margin: 4px 0;
+  }
+  
+  .vBar {
+    width: 6px;
+    height: 16px;
+    border-radius: 4px;
+    background: #e6ecf2;
+  }
+  
+  .vBar:nth-child(2) { height: 22px; }
+  .vBar:nth-child(3) { height: 28px; }
+  .vBar:nth-child(4) { height: 34px; }
+  .vBar:nth-child(5) { height: 40px; }
+  
+  .vBarActive {
+    background: linear-gradient(180deg, #20e0d1, #4f6cff);
+  }
+  
+  .compatibilityScore {
+    font-size: 11px;
+    font-weight: 600;
+    color: #009688;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+  }
+  
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .sidebar {
+    width: 100%;
+  max-width: 340px;
+  box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid #eef2f6;
+    height: fit-content;
+  }
+  
+  .compareItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f9fbfd;
+    border-radius: 12px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  .compareAvatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #009688;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .reportBtn {
+    width: 100%;
+    margin-top: 20px;
+    background: #111827;
+    color: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  /* Page should take full screen */
+.page {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden; /* kill horizontal scrollbar */
+    background: #f7f9fb;
+  }
+  
+  /* Main layout */
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px; /* left grows fully */
+    gap: 20px;
+    width: 100%;
+    max-width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .analysisCard {
+    margin-top: 16px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 14px;
+    border: 1px solid #eef2f6;
+  }
+  
+  .analysisTitle {
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    color: #6b7280;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  .radarWrap {
+    height: 220px;
+    width: 100%;
+  }
+  .searchRow {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  
+  .search {
+    flex: 1;
+    }
+  
+
+  
+  .advancedInline {
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #eef2f6;
+    border: 1px solid #dde3ea;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .advancedInline:hover {
+    background: #e6ecf2;
+  }
+  .sortRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    /* margin-top: 4px;   bring it closer to search */
+    margin-bottom: 12px;
+  }
+  
+  .sortLabel {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6b7280;
+  }
+  
+  .sortBtn {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .sortBtn:hover {
+    /* background: #f1fffd; */
+    border-color: #009688;
+  }
+  
+  .activeSort {
+    background: #009688;
+    color: white;
+    border-color: #009688;
+    font-weight: 600;
+  }
+  .advancedOverlay {
+    position: fixed;
+    top: 0;
+    right: -380px;
+    height: 100vh;
+    width: 380px;
+    background: transparent;
+    z-index: 1000;
+    transition: right 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .advancedOverlay.open {
+    right: 0;
+  }

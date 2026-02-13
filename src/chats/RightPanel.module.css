@@ -1,0 +1,47 @@
+.panel {
+  width: 280px;
+  background: #fff;
+  border-left: 1px solid #eee;
+  padding: 16px;
+}
+
+.search {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.sectionTitle {
+  margin: 16px 0 8px;
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+}
+
+.member {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.member img {
+  border-radius: 50%;
+}
+
+.file {
+  padding: 8px 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.viewAll {
+  margin-top: 12px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #00c2ff;
+  background: transparent;
+  color: #00c2ff;
+}

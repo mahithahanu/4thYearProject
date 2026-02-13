@@ -3,57 +3,61 @@ import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 
 const AuthChoice = () => {
-  const navigate = useNavigate();   // 👈 added
+  const navigate = useNavigate();
+
+  const handleLogin = (role) => {
+    localStorage.setItem("role", role); // ✅ SAVE ROLE
+    navigate("/login");
+  };
 
   return (
     <div className="auth-container">
       <div className="auth-box">
 
-        {/* LEFT SIDE - ORGANISERS */}
+        {/* ORGANIZERS */}
         <div className="auth-card">
           <span className="badge">ORGANISERS</span>
           <h1>For <i>Organisers</i></h1>
-          <p>
-            Thousands of organisations use modern platforms to manage events,
-            handle participants, track performance, and streamline operations.
-          </p>
 
-          {/* LOGIN BUTTON */}
-          <button 
+          <button
             className="login-btn"
-            onClick={() => navigate("/login")}
+            onClick={() => handleLogin("organizer")}
           >
             Login
           </button>
 
           <p className="bottom-text">
             Don’t have an account?{" "}
-            <span className="link" onClick={() => navigate("/signup")}>Sign up</span>
+            <span
+              className="link"
+              onClick={() => navigate("/signup/organizer")}
+            >
+              Sign up
+            </span>
           </p>
         </div>
 
-        {/* CENTER DIVIDER */}
         <div className="divider"></div>
 
-        {/* RIGHT SIDE - PARTICIPANTS */}
+        {/* PARTICIPANTS */}
         <div className="auth-card">
-            <p><p></p></p><p><p><p></p></p></p><p></p>
           <h1>For Participants</h1>
-          <p>
-            Join competitions, practice skills, prepare for challenges,
-            collaborate with teams, and boost your professional growth.
-          </p>
 
-          {/* LOGIN BUTTON */}
-          <button 
+          <button
             className="login-btn"
-            onClick={() => navigate("/login")}
+            onClick={() => handleLogin("participant")}
           >
             Get Started
           </button>
 
           <p className="bottom-text">
-            Don’t have an account? <span className="link" onClick={() => navigate("/signup")}>Click Here</span>
+            Don’t have an account?{" "}
+            <span
+              className="link"
+              onClick={() => navigate("/signup/participant")}
+            >
+              Click Here
+            </span>
           </p>
         </div>
 

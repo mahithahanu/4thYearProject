@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+
+  const handleSendOtp = async () => {
+    try {
+      await axios.post("http://localhost:5000/forgot-password", { email });
+
+      localStorage.setItem("resetEmail", email);
+      navigate("/otp");
+    } catch (err) {
+      alert(err.response?.data?.message || "Error sending OTP");
+    }
+  };
 
   return (
     <div className="login-wrapper">
-      {/* Left side illustration */}
       <div className="login-left">
         <img
           src="https://illustrations.popsy.co/white/work-from-home.svg"
@@ -16,26 +28,22 @@ const ForgotPassword = () => {
         />
       </div>
 
-      {/* Right side form */}
       <div className="login-right">
         <h2>Forgot Password</h2>
         <p className="sub-text">
-          Don't worry! Enter your email and we’ll send you a verification OTP.
+          Enter your email to receive an OTP.
         </p>
 
-        <input type="email" placeholder="Enter your email" />
+        <input
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-        <button
-          className="login-btn-main"
-          onClick={() => navigate("/otp")}
-        >
+        <button className="login-btn-main" onClick={handleSendOtp}>
           Send OTP
         </button>
-
-        <p className="signup-text">
-          Remember your password?{" "}
-          <span onClick={() => navigate("/login")}>Login</span>
-        </p>
       </div>
     </div>
   );

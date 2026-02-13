@@ -1,0 +1,68 @@
+/* WorkingProcess.module.css */
+
+.workingProcess {
+    padding: 60px 20px;
+    text-align: center;
+    background: #f7f7fc;
+    font-family: "Arial", sans-serif;
+  }
+  
+  .heading {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #333;
+  }
+  
+  .steps {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .stepCard {
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    max-width: 250px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  
+  .stepCard:hover {
+    transform: translateY(-10px);
+  }
+  
+  .icon {
+    font-size: 2.5rem;
+    background: #e5e5ff;
+    color: #008080;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+  }
+  
+  .stepTitle {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #222;
+  }
+  
+  .stepDescription {
+    font-size: 0.95rem;
+    color: #666;
+  }
+  
+  /* Responsive */
+  @media (max-width: 900px) {
+    .steps {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+  }

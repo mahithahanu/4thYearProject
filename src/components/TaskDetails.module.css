@@ -1,0 +1,345 @@
+.page {
+    width: 100%;
+    min-height: 100vh;
+    background: #f7f9fc;
+    padding: 20px;
+    font-family: "Inter", sans-serif;
+  }
+  
+  .container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* gap between detailed card and board */
+  }
+  
+  /* ===== DETAILED CARD ===== */
+  /* Card styling */
+/* Container for the two cards */
+.cardContainer {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+  }
+  
+  /* Card 1: Meta card */
+  .cardMetaCard {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    /* gap: 16px; */
+  }
+  
+  /* Card 2: Description card */
+  .cardDescriptionCard {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  
+  /* Title styling */
+  .cardTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  
+  /* Meta info container */
+  .cardMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: #6b7280;
+    align-items: center;
+  }
+  
+  .due, .difficulty {
+    font-weight: 500;
+  }
+  
+  .skill {
+    background-color: #00bfa6;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  /* Description text styling */
+  .cardDescription {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #374151;
+  }
+  
+  
+  
+  /* ===== TASK BOARD ===== */
+  .board {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    gap: 20px; /* gap between columns */
+  }
+  
+  .column {
+    flex: 1; /* evenly distribute width */
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px; /* gap between tasks inside column */
+  }
+  
+  .addTask {
+    background: #00bfa6;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  /* ===== TASK CARD ===== */
+  .taskCard {
+    background: #f1f5f9;
+    padding: 12px 16px;
+    cursor: grab;
+    border-radius: 8px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  
+.taskCard:active {
+  cursor: grabbing;
+  opacity: 0.85;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  /* gap: 14px;            SPACE BETWEEN CARDS */
+  min-height: 200px;
+  transition: background 0.2s ease;
+}
+.column > .taskCard:not(:last-child) {
+  margin-bottom: 6px;
+}
+
+/* OPTIONAL: visual gap hint while dragging over */
+.column.dragOver {
+  background: #f0fdfa;
+  border-radius: 12px;
+}
+  .taskTitle {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  
+  .taskOwner,
+  .taskDate {
+    font-size: 0.85rem;
+    color: #555;
+  }
+  
+  .taskDifficulty {
+    background: #00bfa6;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+  }
+  
+  /* ===== MODAL ===== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  width: 320px;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.modalHeader h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.close {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 10px;
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+}
+
+.assigned {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.assigned img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.modalButton {
+  width: 100%;
+  margin-top: 16px;
+  padding: 10px;
+  background: #00bfa6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.completedCard {
+  position: relative;
+  background: #ecfdf5;
+  cursor: default;
+}
+.topRightActions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;   /* 🔥 THIS fixes vertical mismatch */
+  gap: 6px;
+}
+
+/* top-right three dots */
+.dots {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 21px;
+  cursor: pointer;
+  color: #555;
+  z-index: 2;
+}
+
+/* tick in middle-right with round green bg */
+.tickBadge {
+  position: absolute;
+  top: 50%;
+  right: 10px;                 /* slightly outside card */
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: #22c55e;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* tick */
+.tick {
+  font-size: 18px;
+  font-weight: 700;
+  color: #22c55e;
+  line-height: 1;        /* important */
+}
+
+
+
+
+.menuWrapper {
+  position: absolute;
+  top: 6px;
+  right: 28px;
+}
+
+.menu {
+  position: absolute;
+  right: 0;
+  top: 22px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+
+.menuItem {
+  padding: 8px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.confirmActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.yesBtn {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.noBtn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}

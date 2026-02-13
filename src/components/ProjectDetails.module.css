@@ -1,0 +1,256 @@
+.page {
+  padding: 40px 60px;
+  background: #f9fbfc;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  border-radius: 12px;
+  overflow: hidden;
+  
+  background: #008080; /* base color */
+}
+.header h1{
+  color: white;
+}
+.header p{
+  color: black;
+}
+
+/* 🔹 Overlay Layer */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 184, 166, 0.35); /* light teal transparent */
+  backdrop-filter: blur(6px); /* optional glass effect */
+  z-index: 0;
+}
+
+/* 🔹 Make content appear above overlay */
+.header > * {
+  position: relative;
+  z-index: 1;
+}
+
+.primary {
+  background: white;
+  color: #008080;
+  font-weight: 600;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+
+.projectInfo {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+}
+
+.tags span {
+  background: #e6f9f9;
+  color: #008080;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.actions button {
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.primary {
+  background: #008080;
+  color: white;
+}
+
+.secondary {
+  background: #e6f9f9;
+  color: #008080;
+}
+
+/* CONTENT */
+.content {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.left {
+  flex: 2;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+.techStack span {
+  display: inline-block;
+  background: #f1f5f4;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin: 6px;
+}
+
+.highlight {
+  background: #e6f9f9;
+  padding: 18px;
+  border-radius: 12px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.card a {
+  display: block;
+  margin-top: 8px;
+  color: #008080;
+  text-decoration: none;
+}
+
+.submitCard {
+  background: #008080;
+  color: white;
+  padding: 22px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* SkillMatrix Card */
+.skillMatrix {
+  background: #f9fcfc;
+  border-left: 4px solid #16a085;
+  padding: 18px;
+  border-radius: 10px;
+}
+
+.skillMatrix h4 {
+  margin-bottom: 12px;
+}
+
+.skillMatrix p {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Right side cards */
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Team Card */
+.teamCard {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.teamCard h5 {
+  font-size: 12px;
+  color: #16a085;
+  margin-bottom: 12px;
+}
+
+.member {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.member img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.member span {
+  font-size: 12px;
+  color: gray;
+}
+
+/* Assets Card */
+.assetsCard {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.assetsCard h5 {
+  font-size: 12px;
+  color: #16a085;
+  margin-bottom: 12px;
+}
+
+.assetsCard a {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.assetsCard span {
+  font-size: 12px;
+  color: gray;
+}
+
+/* Submission Card */
+.submitCard {
+  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  color: white;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.submitted {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.submitCard h4 {
+  margin: 8px 0;
+}

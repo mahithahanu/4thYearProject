@@ -1,24 +1,25 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StudentDashboard from "./StudentDashboard";
 import Users from "./users";
 import Steps from "./steps";
 import Services from "./services";
-import Footer from "./footer";
 import Aboutus from "./About";
-
-
+import HackathonCard from "./DashcardHackathonCards";
+import { Toaster } from "react-hot-toast";
 
 function Homepage() {
   return (
-      <div>
-        <StudentDashboard/>
-        <Users/>
-        <Steps/>
-        <Services/>
-        <Aboutus/>
-        <Footer/>
-      </div>
+    <div>
+      {/* Global toaster */}
+      <Toaster position="top-right" />
+
+      <StudentDashboard />
+      <Users />
+       <HackathonCard/>
+      <Steps />
+      <Services />
+      <Aboutus />
+    </div>
   );
 }
 

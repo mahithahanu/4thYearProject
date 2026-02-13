@@ -3,74 +3,11 @@
   min-height: 100vh;
   background: white;
   font-family: "Segoe UI", sans-serif;
-  overflow-x: hidden;   /* ✅ ADD THIS */
-}
-
-
-/* NAVBAR */
-.navbar {
-  height: 70px;
-  padding: 0 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #e5e5e5;
-  position: relative;
-  z-index: 100;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: #008080; /* teal */
-}
-
-.navLinks {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  color: #333;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.navLinks li {
-  cursor: pointer;
-}
-
-.navBtns {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.loginBtn {
-  padding: 8px 20px;
-  border-radius: 20px;
-  border: none;
-  background: #008080;
-  color: white;
-  cursor: pointer;
-}
-
-/* HAMBURGER MENU */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-  margin-left: 10px;
-}
-
-.hamburger span {
-  width: 25px;
-  height: 3px;
-  background: #008080;
-  display: block;
-  border-radius: 2px;
+  overflow-x: hidden;
 }
 
 /* MAIN SECTION */
+
 .mainSection {
   display: flex;
   padding: 80px 60px;
@@ -80,6 +17,7 @@
 }
 
 /* LEFT SIDE */
+
 .left {
   width: 45%;
   min-width: 300px;
@@ -112,7 +50,8 @@
   cursor: pointer;
 }
 
-/* RIGHT SIDE - CARDS */
+/* RIGHT SIDE */
+
 .right {
   width: 50%;
   display: grid;
@@ -138,12 +77,14 @@
 }
 
 /* CARD COLORS */
+
 .teal {
   background: #008080;
   color: white;
 }
-.teal p{
-  color:#e8fffb;
+
+.teal p {
+  color: #e8fffb;
 }
 
 .white {
@@ -169,6 +110,7 @@
 }
 
 /* RESPONSIVE */
+
 @media (max-width: 1200px) {
   .mainSection {
     padding: 60px 40px;
@@ -191,32 +133,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  .navLinks {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background: white;
-    flex-direction: column;
-    width: 200px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transform: translateX(100%);
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .navLinks.active {
-    transform: translateX(0);
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-}
-
 @media (max-width: 480px) {
   .left h1 {
     font-size: 32px;
@@ -229,10 +145,6 @@
   .cta {
     padding: 10px 20px;
     font-size: 14px;
-  }
-
-  .right {
-    grid-template-columns: 1fr;
   }
 
   .card {

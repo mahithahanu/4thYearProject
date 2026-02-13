@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
+  const [newPassword, setNewPassword] = useState("");
+
+  const handleResetPassword = async () => {
+    const email = localStorage.getItem("resetEmail");
+    const otp = localStorage.getItem("resetOtp");
+
+    if (!newPassword) {
+      alert("Enter new password");
+      return;
+    }
+
+    try {
+      await axios.post("http://localhost:5000/reset-password", {
+        email,
+        otp,
+        newPassword,
+      });
+
+      alert("Password reset successful");
+      localStorage.removeItem("resetEmail");
+      localStorage.removeItem("resetOtp");
+      navigate("/login");
+
+    } catch (err) {
+      alert(err.response?.data?.message || "Reset failed");
+    }
+  };
 
   return (
     <div className="login-wrapper">
@@ -17,18 +45,16 @@ const ResetPassword = () => {
 
       <div className="login-right">
         <h2>Reset Password</h2>
-        <p className="sub-text">
-          Create a new strong password for your account.
-        </p>
 
-        <input type="password" placeholder="New password" />
-        <input type="password" placeholder="Confirm password" />
+        <input
+          type="password"
+          placeholder="Enter new password"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
 
-        <button
-          className="login-btn-main"
-          onClick={() => navigate("/")}
-        >
-          Update Password
+        <button className="login-btn-main" onClick={handleResetPassword}>
+          Reset Password
         </button>
       </div>
     </div>

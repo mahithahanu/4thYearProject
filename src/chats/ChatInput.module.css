@@ -1,0 +1,110 @@
+/* INPUT WRAPPER */
+.inputWrapper {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border-top: 1px solid #eee;
+  position: relative;
+}
+
+/* INPUT PILL */
+.inputBox {
+  position: relative;
+  flex: 1;
+  height: 44px;
+  background: #f3f6f6;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+}
+
+/* 📎 PAPERCLIP ICON */
+.clipIcon {
+  position: absolute;
+  left: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  font-size: 18px;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.clipIcon:hover {
+  color: #111827;
+}
+
+/* 🙂 EMOJI ICON */
+.emojiIcon {
+  position: absolute;
+  right: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  font-size: 20px;
+  color: #00b3b3;
+  cursor: pointer;
+}
+
+.emojiIcon:hover {
+  transform: scale(1.1);
+}
+
+/* INPUT FIELD */
+.inputBox input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+
+  /* space for icons */
+  padding-left: 44px;
+  padding-right: 44px;
+}
+
+/* SEND BUTTON */
+.sendBtn {
+  width: 40px;
+  height: 40px;
+  background: #00d5d8;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sendBtn svg {
+  font-size: 16px;
+}
+
+/* EMOJI PICKER */
+.emojiPicker {
+  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+}
+
+/* 🔥 IMPORTANT FIX FOR SVG DISTORTION */
+svg {
+  display: block;
+}

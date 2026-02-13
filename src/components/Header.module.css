@@ -1,0 +1,136 @@
+/* HEADER / NAVBAR */
+
+.navbar {
+  height: 70px;
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+  z-index: 100;
+  background: white;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #008080;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.navLinks li {
+  cursor: pointer;
+}
+
+.navBtns {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.loginBtn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #008080;
+  color: white;
+  cursor: pointer;
+}
+
+/* PROFILE */
+
+.profileWrapper {
+  position: relative;
+}
+
+.profileIcon {
+  width: 42px;
+  height: 42px;
+  background-color: #008080;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* DROPDOWN */
+
+.profileDropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 140px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+
+.profileDropdown p {
+  margin: 0;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.profileDropdown p:hover {
+  background-color: #f1f5f4;
+}
+
+/* HAMBURGER */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #008080;
+  display: block;
+  border-radius: 2px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .navLinks {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    width: 200px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .navLinks.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

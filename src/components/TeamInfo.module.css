@@ -1,0 +1,258 @@
+.wrapper {
+  display: flex;
+  height: 100vh;
+  font-family: Inter, sans-serif;
+  /* background: #f8fdfd; */
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 340px;
+  background: #ffffff;
+  border-right: 1px solid #e6f2f2;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.search {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e0eaea;
+  margin-bottom: 20px;
+}
+
+.member {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.title {
+  color: #009688;
+}
+
+.memberInfo {
+  flex: 1;
+}
+.youBadge {
+  background: #009688;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+
+.member:hover,
+.active {
+  background: #e9ffff;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #009688;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.memberName {
+  font-weight: 600;
+}
+
+.memberRole {
+  font-size: 12px;
+  color: #489494;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 40px;
+}
+
+.header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.profileCircle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #009688;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.email {
+  color: #6b8b8b;
+}
+
+.badge {
+  background: #e9ffff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.location {
+  color: #508b8b;
+  font-size: 13px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+/* SKILLS */
+.skill {
+  margin-bottom: 18px;
+}
+
+.skillHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.bar {
+  height: 8px;
+  background: #e6f2f2;
+  border-radius: 20px;
+}
+
+.fill {
+  height: 100%;
+  background: #009688;
+  border-radius: 20px;
+}
+
+.core {
+  margin-top: 30px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tags span {
+  border: 1px solid #cdeeee;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* TIMELINE */
+.timeline {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 40px;
+}
+
+.line {
+  position: absolute;
+  left: 9px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #cdeeee;
+}
+
+.circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #009688;
+  position: absolute;
+  left: 0;
+  top: 6px;
+}
+
+.timelineContent {
+  padding-left: 20px;
+}
+
+.year {
+  color: #009688;
+  font-size: 13px;
+}
+
+.company {
+  color: #4a8585;
+  font-size: 13px;
+}
+
+.desc {
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.socials {
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
+}
+.linkedin {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid #d9eded;
+  background: #ffffff;
+  color: #377676;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.linkedin:hover {
+  background: #f3fefe;
+}
+.github {
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: #009688;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.github:hover {
+  background: #016158;
+}
+.header h1 {
+  margin-bottom: 4px;
+}
+
+.email {
+  margin-top: 0;
+}

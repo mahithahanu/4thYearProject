@@ -1,0 +1,111 @@
+.page {
+    padding: 30px;
+    background: #f5f7fa;
+    min-height: 100vh;
+  }
+  
+  .title {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .typeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  .typeWrapper select {
+    width: 300px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  
+  .col label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 12px;
+    display: block;
+  }
+  
+  .col input,
+  .col select,
+  .col textarea {
+    width: 100%;
+    padding: 9px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .mode {
+    display: flex;
+    gap: 20px;
+    margin-top: 6px;
+  }
+  
+  .skillRow {
+    display: flex;
+    gap: 10px;
+  }
+
+  .dateTimeRow {
+  display: flex;
+  gap: 12px;
+}
+
+.dateTimeRow input[type="date"] {
+  flex: 2;
+}
+
+.dateTimeRow input[type="time"] {
+  flex: 1;
+}
+
+  
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .cancel {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 6px;
+  }
+  
+  .publish {
+    padding: 8px 16px;
+    background: #008080;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .privateBox {
+    margin-top: 30px;
+    padding: 20px;
+    text-align: center;
+    background: #f5f7fa;
+    border-radius: 8px;
+  }
+  
