@@ -29,6 +29,14 @@ import ParticipantAnalysis from "./components/ParticipantAnalysis.jsx";
 import TaskBoard from "./components/workplaceTaskDetails.jsx";
 import Assessment from "./components/AssignmentQuestions.jsx";
 import OrganizerLayout from "./Layouts/OrganizerLayout";
+import OrganizerHackathonLayout from "./OrganizerhackathonDetail/OrganizerHackathonLayout";
+import GeneralInfo from "./OrganizerhackathonDetail/GeneralInfo.jsx";
+import TimelinePage from "./OrganizerhackathonDetail/TimelinePage.jsx";
+import RulesPage from "./OrganizerhackathonDetail/RulesPage.jsx";
+import ParticipantsPage from "./OrganizerhackathonDetail/ParticipantsPage.jsx";
+import PublishingPage from "./OrganizerhackathonDetail/PublishingPage.jsx";
+import OrganizerProjectsPage from "./OrganizerhackathonDetail/ProjectsPage.jsx";
+import TeamManagement from "./components/TeamManagement.jsx";
 
 function App() {
   return (
@@ -45,29 +53,39 @@ function App() {
 
         {/* ✅ HEADER & FOOTER INCLUDED */}
         <Route element={<Layout />}>
-          <Route path="/" element={<Homepage />} />      
+          <Route path="/" element={<Homepage />} />
           <Route path="/allhackathons" element={<AllHackathons />} />
           <Route path="/workplace" element={<WorkPlace />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:id" element={<ProjectDetails />} />
-          <Route path="/hackthondetails/:id" element={<HackathonDetails/>}/>
-          <Route path="/studenthackathonform" element={<StudentHackathonForm/>}/>
-             <Route path="/workplacetaskdetails" element={<TaskBoard/>}/>
+          <Route path="/hackthondetails/:id" element={<HackathonDetails />} />
+          <Route path="/studenthackathonform" element={<StudentHackathonForm />} />
+          <Route path="/workplacetaskdetails" element={<TaskBoard />} />
         </Route>
 
         <Route path="/chat" element={<ChatsPage />} />
-        <Route path="/teamanalysis" element={<TeamAnalysis/>}/>
-        <Route path="/assessment" element={<Assessment/>}/>
+        <Route path="/teamanalysis" element={<TeamAnalysis />} />
+        <Route path="/assessment" element={<Assessment />} />
 
 
         <Route element={<OrganizerLayout />}>
           <Route path="/organizer/dashboard" element={<OrganizerHomepage />} />
           <Route path="/posthackathon" element={<Posthackathon />} />
-           <Route path="/editteam" element={<EditTeamDetails/>}/>
-            <Route path="/teaminfo" element={<TeamInfo/>}/>
-           <Route path="/teams" element={<Teams/>}/>
-            <Route path="/participantanalysis" element={<ParticipantAnalysis/>}/>
-          
+          <Route path="/editteam" element={<EditTeamDetails />} />
+          <Route path="/teaminfo" element={<TeamInfo />} />
+          <Route path="/teams" element={<Teams />} />
+          <Route path="/participantanalysis" element={<ParticipantAnalysis />} />
+          <Route path="/teammanagement" element={<TeamManagement />} />
+
+        </Route>
+
+        <Route path="/manage-hackathon" element={<OrganizerHackathonLayout />}>
+          <Route path="general/:id" element={<GeneralInfo />} />
+          <Route path="timeline/:id" element={<TimelinePage />} />
+          <Route path="rules/:id" element={<RulesPage />} />
+          <Route path="participants/:id" element={<ParticipantsPage />} />
+          <Route path="Organizerproject/:id" element={<OrganizerProjectsPage />} />
+          <Route path="publishing/:id" element={<PublishingPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

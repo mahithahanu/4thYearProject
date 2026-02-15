@@ -8,6 +8,9 @@ import HackathonCard from "./DashcardHackathonCards";
 import { Toaster } from "react-hot-toast";
 
 function Homepage() {
+  const user = JSON.parse(localStorage.getItem("isLoggedIn") || "null");
+  console.log("User on homepage:", user);
+
   return (
     <div>
       {/* Global toaster */}
@@ -15,7 +18,11 @@ function Homepage() {
 
       <StudentDashboard />
       <Users />
-       <HackathonCard/>
+
+      {/* Show only if logged in */}
+      {user && <HackathonCard />}
+      {/* console.log("User on homepage:", user); */}
+
       <Steps />
       <Services />
       <Aboutus />

@@ -1,0 +1,96 @@
+.container {
+  padding: 30px;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.totalBox {
+  background: #e0f2f1;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.totalBox span {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  color: #0f766e;
+}
+
+.exportBtn {
+  background: #0f766e;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.searchBar input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 15px;
+}
+
+.tableCard {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 10px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+td {
+  padding: 12px 10px;
+  border-top: 1px solid #f1f1f1;
+}
+
+.verified {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.pending {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.waitlisted {
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}

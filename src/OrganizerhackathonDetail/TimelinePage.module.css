@@ -1,0 +1,115 @@
+.container {
+  padding: 30px;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #0f766e;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.savedBadge {
+  background: #111827;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* Card */
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Timeline Layout */
+.timeline {
+  position: relative;
+  margin-left: 20px;
+}
+
+/* Vertical Line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #14b8a6;
+}
+
+/* Timeline Item */
+.timelineItem {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+/* Icon Circle */
+.iconCircle {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 2px solid #14b8a6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  color: #0f766e;
+}
+
+/* Content Box */
+.content {
+  background: #f9fafb;
+  padding: 18px;
+  border-radius: 8px;
+  margin-left: 20px;
+  flex: 1;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date {
+  font-size: 13px;
+  color: #0f766e;
+  font-weight: 500;
+}
+
+.content p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}

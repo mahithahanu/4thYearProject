@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import styles from "./OrganizerDashboardCard.module.css";
 import { ArrowRight } from "lucide-react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function OrganizerHackathonCard() {
   const [hackathons, setHackathons] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // ✅ move this to top
 
   useEffect(() => {
     const fetchHackathons = async () => {
@@ -20,8 +22,8 @@ export default function OrganizerHackathonCard() {
             },
           }
         );
-        console.log("Fetched hackathons:", res.data);
 
+        console.log("Fetched hackathons:", res.data);
         setHackathons(res.data.hackathons);
       } catch (error) {
         console.error("Failed to fetch hackathons:", error);
@@ -32,6 +34,8 @@ export default function OrganizerHackathonCard() {
 
     fetchHackathons();
   }, []);
+
+ 
 
   if (loading) return <p>Loading hackathons...</p>;
 
@@ -77,11 +81,14 @@ export default function OrganizerHackathonCard() {
               {/* Title */}
               <h3>{item.name}</h3>
 
-              {/* Theme or Difficulty */}
+              {/* Theme */}
               <p>{item.theme || "No description available."}</p>
 
               {/* Button */}
-              <button className={styles.button}>
+              <button
+                className={styles.button}
+                onClick={() =>navigate('/manage-hackathon') } // ✅ correct id usage
+              >
                 Manage Hackathon <ArrowRight size={16} />
               </button>
             </div>

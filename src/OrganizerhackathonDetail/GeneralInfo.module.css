@@ -1,0 +1,98 @@
+.container {
+  padding: 30px;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.left label,
+.right label,
+.description label {
+  font-weight: 600;
+  margin-top: 15px;
+  display: block;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.bannerBox {
+  height: 150px;
+  background: #d1d5db;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+  color: #374151;
+  font-weight: 500;
+}
+
+small {
+  display: block;
+  margin-top: 6px;
+  color: #6b7280;
+}
+
+.description {
+  margin-top: 20px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.saved {
+  color: #10b981;
+  font-size: 14px;
+}
+
+.discard {
+  background: #e5e7eb;
+  border: none;
+  padding: 8px 16px;
+  margin-right: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.save {
+  background: #0f766e;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}

@@ -54,7 +54,7 @@ export default function Home() {
           <p>View and analyze participant data.</p>
         </div>
 
-        <div className={styles.card} onClick={() => navigate("/editteam")}>
+        <div className={styles.card} onClick={() => navigate("/teammanagement")}>
           <FaPen className={styles.icon} />
           <h3>Edit Team</h3>
           <p>Manage and edit team members</p>
