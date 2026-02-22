@@ -35,7 +35,7 @@ export default function HackathonDetails() {
         }
 
         const res = await fetch(
-          `http://localhost:5000/api/hackathons/${id}?email=${email}`,
+          `http://localhost:8003/api/hackathons/${id}?email=${email}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -125,7 +125,7 @@ export default function HackathonDetails() {
         className={styles.heroCard}
         style={{
           backgroundImage: hackathon.banner
-            ? `url(http://localhost:5000${hackathon.banner})`
+            ? `url(http://localhost:8003${hackathon.banner})`
             : "none",
         }}
       >

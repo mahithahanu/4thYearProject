@@ -1,12 +1,47 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import EmojiPicker from "emoji-picker-react";
 import styles from "./ChatInput.module.css";
 import { FaPaperclip, FaSmile, FaPaperPlane } from "react-icons/fa";
 
-export default function ChatInput({ onSend }) {
+export default function ChatInput({ onSend, onTyping }) {
   const [message, setMessage] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   const fileInputRef = useRef(null);
+  const typingTimeoutRef = useRef(null);
+
+  // Handle typing indicator with debounce
+  const handleTypingChange = useCallback((value) => {
+    setMessage(value);
+    
+    // Start typing
+    if (value.trim() && !isTyping) {
+      setIsTyping(true);
+      onTyping?.(true);
+    }
+    
+    // Clear previous timeout
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+    
+    // Stop typing after 2 seconds of no input
+    typingTimeoutRef.current = setTimeout(() => {
+      if (isTyping) {
+        setIsTyping(false);
+        onTyping?.(false);
+      }
+    }, 2000);
+  }, [isTyping, onTyping]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleClipClick = () => {
     fileInputRef.current.click();
@@ -20,11 +55,18 @@ export default function ChatInput({ onSend }) {
   };
 
   const handleEmojiClick = (emojiData) => {
-    setMessage((prev) => prev + emojiData.emoji);
+    handleTypingChange(message + emojiData.emoji);
   };
 
   const handleSend = () => {
     if (!message.trim()) return;
+    
+    // Stop typing indicator
+    if (isTyping) {
+      setIsTyping(false);
+      onTyping?.(false);
+    }
+    
     onSend(message);
     setMessage("");
     setShowEmoji(false);
@@ -33,7 +75,7 @@ export default function ChatInput({ onSend }) {
   return (
     <div className={styles.inputWrapper}>
       <div className={styles.inputBox}>
-        {/* 📎 Paperclip */}
+        {/* Paperclip */}
         <FaPaperclip
           className={styles.clipIcon}
           onClick={handleClipClick}
@@ -44,11 +86,11 @@ export default function ChatInput({ onSend }) {
           type="text"
           placeholder="Type a message..."
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) => handleTypingChange(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
         />
 
-        {/* 🙂 Emoji */}
+        {/* Emoji */}
         <FaSmile
           className={styles.emojiIcon}
           onClick={() => setShowEmoji((p) => !p)}

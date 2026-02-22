@@ -24,7 +24,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/signup", {
+      const response = await axios.post("http://localhost:8003/api/signup", {
         name: fullName,
         email,
         password,
@@ -39,6 +39,8 @@ const Signup = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("userEmail", user.email);
       localStorage.setItem("isLoggedIn", "true");
+      // Store full user object for chat/socket functionality
+      localStorage.setItem("user", JSON.stringify(user));
 
       // ✅ Updated Navigation Logic
       if (user.role === "organizer") {

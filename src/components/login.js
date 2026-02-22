@@ -24,7 +24,7 @@ const Login = () => {
         return;
       }
 
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("http://localhost:8003/api/login", {
         email,
         password,
         role,
@@ -37,6 +37,8 @@ const Login = () => {
       localStorage.setItem("token", token); // <-- JWT token stored
       localStorage.setItem("userEmail", user.email);
       localStorage.setItem("role", user.role);
+      // Store full user object for chat/socket functionality
+      localStorage.setItem("user", JSON.stringify(user));
 
       alert("Login successful!");
 

@@ -24,7 +24,7 @@ const OtpVerification = () => {
     try {
       setLoading(true);
 
-      await axios.post("http://localhost:5000/forgot-password", {
+      await axios.post("http://localhost:8003/forgot-password", {
         email,
       });
 

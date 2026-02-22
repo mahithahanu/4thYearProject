@@ -1,47 +1,203 @@
 .panel {
-  width: 280px;
+  width: 300px;
   background: #fff;
   border-left: 1px solid #eee;
-  padding: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  background: #f0f0f0;
+  color: #333;
 }
 
 .search {
   width: 100%;
-  padding: 8px;
+  padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search:focus {
+  border-color: #008080;
 }
 
 .sectionTitle {
-  margin: 16px 0 8px;
+  margin: 20px 0 12px;
   font-size: 12px;
   color: #666;
   display: flex;
   justify-content: space-between;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sectionTitle span {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.memberList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .member {
   display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.member img {
-  border-radius: 50%;
-}
-
-.file {
-  padding: 8px 0;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.viewAll {
-  margin-top: 12px;
-  width: 100%;
-  padding: 8px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
   border-radius: 8px;
-  border: 1px solid #00c2ff;
-  background: transparent;
-  color: #00c2ff;
+  background: #f9fafb;
+  transition: background 0.2s;
+}
+
+.member:hover {
+  background: #f0f9f9;
+}
+
+.memberAvatar {
+  width: 40px;
+  height: 40px;
+  background: #e0f2f1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #008080;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.statusDot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.online {
+  color: #22c55e;
+}
+
+.offline {
+  color: #9ca3af;
+}
+
+.memberInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.memberInfo .name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.leaderIcon {
+  color: #f59e0b;
+  font-size: 12px;
+}
+
+.memberInfo .email {
+  font-size: 11px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.status {
+  font-size: 11px;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.memberActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.chatBtn {
+  background: #e0f2f1;
+  border: none;
+  color: #008080;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.chatBtn:hover {
+  background: #008080;
+  color: white;
+}
+
+.teamInfo {
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.teamInfo p {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.teamInfo p:last-child {
+  margin-bottom: 0;
+}
+
+.teamInfo strong {
+  color: #333;
+}
+
+.loading,
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-size: 13px;
 }

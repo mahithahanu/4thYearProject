@@ -20,7 +20,7 @@ export default function ProjectCards() {
 
   const fetchHackathons = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/hackathons/all", {
+      const res = await axios.get("http://localhost:8003/api/hackathons/all", {
         params: { email: userEmail },
       });
       setHackathons(res.data);
@@ -74,7 +74,7 @@ export default function ProjectCards() {
               key={item._id}
             >
               <img
-                src={`http://localhost:5000${item.banner}`}
+                src={`http://localhost:8003${item.banner}`}
                 alt={item.name}
                 className={styles.image}
               />
