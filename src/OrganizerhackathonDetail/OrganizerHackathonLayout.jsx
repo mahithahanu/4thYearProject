@@ -11,29 +11,29 @@ export default function OrganizerHackathonLayout() {
       <aside className={styles.sidebar}>
         <h3 className={styles.heading}>Management</h3>
 
-        <NavLink to={`general/${id}`} className={styles.link}>
+        <NavLink to={`general`} className={styles.link}>
           General Info
         </NavLink>
 
-        <NavLink to={`timeline/${id}`} className={styles.link}>
+        <NavLink to={`timeline`} className={styles.link}>
           Timeline
         </NavLink>
 
-        <NavLink to={`rules/${id}`} className={styles.link}>
+        {/* <NavLink to={`rules`} className={styles.link}>
           Rules
-        </NavLink>
+        </NavLink> */}
 
-        <NavLink to={`participants/${id}`} className={styles.link}>
+        <NavLink to={`participants`} className={styles.link}>
           Participants
         </NavLink>
 
-        <NavLink to={`Organizerproject/${id}`} className={styles.link}>
+        <NavLink to={`Organizerproject`} className={styles.link}>
           Projects
         </NavLink>
 
-        <NavLink to={`publishing/${id}`} className={styles.link}>
+        {/* <NavLink to={`publishing`} className={styles.link}>
           Publishing
-        </NavLink>
+        </NavLink> */}
 
         <button
           className={styles.backBtn}

@@ -57,6 +57,7 @@
   width: 100%;
   padding: 10px;
   border-radius: 8px;
+   width: 90%;
   border: 1px solid #e5e7eb;
   font-size: 14px;
 }
@@ -196,5 +197,46 @@
   padding: 6px 12px;
   border-radius: 6px;
   margin-left: 8px;
+  cursor: pointer;
+}
+/* Select styling */
+.formGrid select {
+  width: 95%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  background: white;
+}
+
+/* Benefit sections */
+.benefitBox {
+  margin-top: 10px;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+/* Checkbox list */
+.checkbox {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+/* Prize rows */
+.prizeRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Add prize button */
+.addPrizeBtn {
+  margin-top: 10px;
+  background: #e5e7eb;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
   cursor: pointer;
 }

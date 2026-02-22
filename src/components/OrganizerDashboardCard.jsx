@@ -87,7 +87,7 @@ export default function OrganizerHackathonCard() {
               {/* Button */}
               <button
                 className={styles.button}
-                onClick={() =>navigate('/manage-hackathon') } // ✅ correct id usage
+                onClick={() =>navigate(`/manage-hackathon/${item._id}`) } // ✅ correct id usage
               >
                 Manage Hackathon <ArrowRight size={16} />
               </button>

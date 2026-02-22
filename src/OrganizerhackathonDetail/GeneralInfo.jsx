@@ -1,71 +1,181 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import styles from "./GeneralInfo.module.css";
 
 export default function GeneralInfoPage() {
+  const { hackathonId } = useParams();
+
+  const [original, setOriginal] = useState(null);
+
+  const [name, setName] = useState("");
+  const [theme, setTheme] = useState("");
+  const [mode, setMode] = useState("online");
+  const [description, setDescription] = useState("");
+  const [bannerFile, setBannerFile] = useState(null);
+
+  /* ================= LOAD DATA ================= */
+
+  useEffect(() => {
+    const fetchHackathon = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get(
+          `http://localhost:5000/api/hackathons/${hackathonId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        const data = res.data;
+
+        setOriginal(data);
+
+        setName(data.name || "");
+        setTheme(data.theme || "");
+        setMode(data.mode || "online");
+        setDescription(data.description || "");
+      } catch (err) {
+        console.error("Load failed:", err);
+      }
+    };
+
+    fetchHackathon();
+  }, [hackathonId]);
+
+  /* ================= SAVE ================= */
+
+  const handleSave = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("theme", theme);
+      formData.append("mode", mode);
+      formData.append("description", description);
+
+      if (bannerFile) {
+        formData.append("banner", bannerFile);
+      }
+
+      await axios.put(
+        `http://localhost:5000/api/hackathons/${hackathonId}/general-info`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      alert("Changes saved successfully");
+    } catch (err) {
+      console.error("Save failed:", err);
+      alert("Failed to save changes");
+    }
+  };
+
+  /* ================= DISCARD ================= */
+
+  const handleDiscard = () => {
+    if (!original) return;
+
+    setName(original.name || "");
+    setTheme(original.theme || "");
+    setMode(original.mode || "online");
+    setDescription(original.description || "");
+    setBannerFile(null);
+  };
+
+  /* ================= UI ================= */
+
   return (
     <div className={styles.container}>
       <h2>General Information</h2>
+
       <p className={styles.subtitle}>
         Define the core identity and primary details of your hackathon.
       </p>
 
       <div className={styles.card}>
         <div className={styles.grid}>
-          {/* Left Side */}
+          {/* LEFT */}
           <div className={styles.left}>
             <label>Hackathon Title</label>
             <input
               type="text"
-              defaultValue="Global AI Hackathon 2024"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
 
             <label>Tagline</label>
             <input
               type="text"
-              defaultValue="Building the future of Generative AI together"
+              value={theme}
+              onChange={(e) => setTheme(e.target.value)}
             />
 
             <label>Event Type</label>
-            <select defaultValue="Hybrid">
-              <option>Online</option>
-              <option>Offline</option>
-              <option>Hybrid</option>
+            <select
+              value={mode}
+              onChange={(e) => setMode(e.target.value)}
+            >
+              <option value="online">Online</option>
+              <option value="offline">Offline</option>
+              <option value="hybrid">Hybrid</option>
             </select>
           </div>
 
-          {/* Right Side */}
+          {/* RIGHT */}
           <div className={styles.right}>
             <label>Banner Image</label>
-            <div className={styles.bannerBox}>
-              <span>Upload Banner</span>
-            </div>
-            <small>Recommended size 1200x400px (JPG, PNG, max 5MB)</small>
+
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setBannerFile(e.target.files[0])}
+            />
+
+            <small>
+              Recommended size 1200×400px (JPG, PNG, max 5MB)
+            </small>
           </div>
         </div>
 
-        {/* Description */}
+        {/* DESCRIPTION */}
         <div className={styles.description}>
           <label>Event Description</label>
+
           <textarea
             rows="8"
-            defaultValue={`Join us for a 48-hour sprint of innovation where developers, designers, and AI enthusiasts from around the globe come together to push the boundaries of what's possible with large language models.
-
-This year's theme focuses on "AI for Good," encouraging participants to develop projects that address climate change, healthcare accessibility, and educational equality.
-
-What to expect:
-- Mentorship from industry leaders
-- Exclusive access to premium AI APIs
-- $50,000 in total prizes
-- Networking opportunities with top tech recruiters`}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
 
-        {/* Footer */}
+        {/* FOOTER */}
         <div className={styles.footer}>
-          <span className={styles.saved}>All changes saved locally</span>
+          <span className={styles.saved}>
+            Changes will be saved to database
+          </span>
 
           <div>
-            <button className={styles.discard}>Discard</button>
-            <button className={styles.save}>Save Changes</button>
+            <button
+              className={styles.discard}
+              onClick={handleDiscard}
+            >
+              Discard
+            </button>
+
+            <button
+              className={styles.save}
+              onClick={handleSave}
+            >
+              Save Changes
+            </button>
           </div>
         </div>
       </div>

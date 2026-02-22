@@ -13,17 +13,6 @@ const Sidebar = () => {
         <li>EdTech</li>
       </ul>
 
-      <h4 className={styles.heading}>Platforms</h4>
-      <label className={styles.checkbox}>
-        <input type="checkbox" /> Desktop
-      </label>
-      <label className={styles.checkbox}>
-        <input type="checkbox" /> Mobile Web
-      </label>
-      <label className={styles.checkbox}>
-        <input type="checkbox" /> Native Apps
-      </label>
-
       <button className={styles.clearBtn}>Clear All Filters</button>
     </aside>
   );

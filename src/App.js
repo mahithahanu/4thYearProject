@@ -79,13 +79,18 @@ function App() {
 
         </Route>
 
-        <Route path="/manage-hackathon" element={<OrganizerHackathonLayout />}>
-          <Route path="general/:id" element={<GeneralInfo />} />
-          <Route path="timeline/:id" element={<TimelinePage />} />
-          <Route path="rules/:id" element={<RulesPage />} />
-          <Route path="participants/:id" element={<ParticipantsPage />} />
-          <Route path="Organizerproject/:id" element={<OrganizerProjectsPage />} />
-          <Route path="publishing/:id" element={<PublishingPage />} />
+        <Route element={<Layout />}>
+          <Route
+            path="/manage-hackathon/:hackathonId"
+            element={<OrganizerHackathonLayout />}
+          >
+            <Route path="general" element={<GeneralInfo />} />
+            <Route path="timeline" element={<TimelinePage />} />
+            <Route path="rules" element={<RulesPage />} />
+            <Route path="participants" element={<ParticipantsPage />} />
+            <Route path="Organizerproject" element={<OrganizerProjectsPage />} />
+            <Route path="publishing" element={<PublishingPage />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
