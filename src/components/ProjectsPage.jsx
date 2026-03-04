@@ -1,34 +1,74 @@
 import Sidebar from "./Sidebar";
 import ProjectCard from "./ProjectCard";
-import { projects } from "../data/ProjectsData";
 import styles from "./ProjectsPage.module.css";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const ProjectsPage = () => {
   const navigate = useNavigate();
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMyProjects = async () => {
+      try {
+        const token = localStorage.getItem("token"); // or wherever you store it
+
+        const res = await axios.get(
+          "http://localhost:8003/api/projects/my-projects",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("MY PROJECTS 👉", res.data);
+
+        setProjects(res.data);
+      } catch (err) {
+        console.error("Error fetching projects:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMyProjects();
+  }, []);
+
   return (
     <div className={styles.layout}>
       <Sidebar />
 
       <main className={styles.content}>
-        <h2>Project Gallery</h2>
+        <h2>My Projects</h2>
         <p className={styles.subtitle}>
-          Explore AI-driven innovations from SkillMatrix hackathons
+          Projects created by you
         </p>
 
         <div className={styles.tabs}>
           <button className={styles.activeTab}>All Projects</button>
-          <button>Ongoing</button>
-          <button>Completed</button>
         </div>
 
-        <div className={styles.grid}>
-          {projects.map((p) => (
-            <ProjectCard key={p.id} project={p} onClick={() => navigate(`/projects/${p.id}`)} />
-          ))}
-        </div>
+        {loading ? (
+          <p>Loading projects...</p>
+        ) : projects.length === 0 ? (
+          <p>No projects found</p>
+        ) : (
+          <div className={styles.grid}>
+            {projects.map((p) => (
+              <ProjectCard
+                key={p._id}
+                project={p}
+                onClick={() => navigate(`/projects/${p._id}`)}
+              />
+            ))}
+          </div>
+        )}
 
-        <button className={styles.loadMore}>Load More Projects</button>
+        <button className={styles.loadMore}>
+          Load More Projects
+        </button>
       </main>
     </div>
   );

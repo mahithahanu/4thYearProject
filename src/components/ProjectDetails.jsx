@@ -1,28 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ProjectDetails.module.css";
-import { FaGithub, FaExternalLinkAlt, FaUsers } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function ProjectDetails() {
+  const { id } = useParams();
+  const [project, setProject] = useState(null);
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:8003/api/projects/${id}`
+        );
+        setProject(res.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchProject();
+  }, [id]);
+
+  if (!project) return <p>Loading...</p>;
+
   return (
     <div className={styles.page}>
       {/* HEADER */}
       <div className={styles.header}>
         <div className={styles.projectInfo}>
-          
           <div>
-            <h1>EcoPulse AI Dashboard</h1>
-            <p>by Team Innovators</p>
+            <h1>{project.title}</h1>
+            <p>by {project.teamName || "Team"}</p>
+
             <div className={styles.tags}>
-              <span>AI & ML</span>
-              <span>Best Innovation</span>
+              {project.tags?.map((tag, i) => (
+                <span key={i}>{tag}</span>
+              ))}
             </div>
           </div>
         </div>
 
         <div className={styles.actions}>
-          <button className={styles.primary}>
-             Submit Project
-          </button>
+          <button className={styles.primary}>Submit Project</button>
           <button className={styles.secondary}>Update Project</button>
         </div>
       </div>
@@ -33,107 +54,60 @@ export default function ProjectDetails() {
         <div className={styles.left}>
           <section>
             <h3>📌 Project Description</h3>
-            <p>
-              EcoPulse is a real-time carbon footprint monitoring dashboard
-              designed for large-scale logistics operations. By leveraging
-              advanced machine learning models, it analyzes supply chain routes,
-              vehicle telemetry, and energy consumption patterns.
-            </p>
-            <p>
-              Our platform integrates seamlessly with existing ERP systems to
-              track live data and provide actionable insights for sustainable
-              operations.
-            </p>
+            <p>{project.description}</p>
           </section>
 
           <section>
             <h3>⚙️ Tech Stack</h3>
             <div className={styles.techStack}>
-              <span>React</span>
-              <span>Node.js</span>
-              <span>Python</span>
-              <span>MongoDB</span>
-              <span>Tailwind CSS</span>
-              <span>AWS Lambda</span>
+              {project.techStack?.map((tech, i) => (
+                <span key={i}>{tech}</span>
+              ))}
             </div>
           </section>
-
-          <section className={styles.skillMatrix}>
-  <h4>✨ SkillMatrix AI Insights</h4>
-
-  <p>
-    “The project demonstrates high innovation by combining predictive logistics
-    with sustainability metrics, a niche that is currently underserved.”
-  </p>
-
-  <p>
-    “Code architecture shows expert-level utilization of serverless functions,
-    ensuring high scalability under heavy data loads.”
-  </p>
-</section>
-
         </div>
 
         {/* RIGHT */}
         <div className={styles.right}>
-  {/* Meet the Team */}
-  <div className={styles.teamCard}>
-    <h5>👥 MEET THE TEAM</h5>
+          {/* Assets */}
+          <div className={styles.assetsCard}>
+            <h5>📁 PROJECT ASSETS</h5>
 
-    <div className={styles.member}>
-      <img src="https://i.pravatar.cc/40?img=1" alt="Alex" />
-      <div>
-        <strong>Alex Rivera</strong>
-        <span>Team Lead & ML Engineer</span>
-      </div>
-    </div>
+            {project.githubLink && (
+              <a href={project.githubLink} target="_blank" rel="noreferrer">
+                <FaGithub />
+                <div>
+                  <strong>GitHub Repository</strong>
+                  <span>Source Code</span>
+                </div>
+              </a>
+            )}
 
-    <div className={styles.member}>
-      <img src="https://i.pravatar.cc/40?img=2" alt="Sarah" />
-      <div>
-        <strong>Sarah Chen</strong>
-        <span>Full Stack Developer</span>
-      </div>
-    </div>
+            {project.assets?.problemStatementPdf && (
+              <a
+                href={`http://localhost:8003/${project.assets.problemStatementPdf}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaExternalLinkAlt />
+                <div>
+                  <strong>Problem Statement</strong>
+                  <span>PDF</span>
+                </div>
+              </a>
+            )}
+          </div>
 
-    <div className={styles.member}>
-      <img src="https://i.pravatar.cc/40?img=3" alt="Marcus" />
-      <div>
-        <strong>Marcus Vogt</strong>
-        <span>Product Designer</span>
-      </div>
-    </div>
-  </div>
-
-  {/* Project Assets */}
-  <div className={styles.assetsCard}>
-    <h5>📁 PROJECT ASSETS</h5>
-
-    <a href="#">
-      <FaGithub />
-      <div>
-        <strong>GitHub Repository</strong>
-        <span>Source Code</span>
-      </div>
-    </a>
-
-    <a href="#">
-      <FaExternalLinkAlt />
-      <div>
-        <strong>Pitch Deck (PDF)</strong>
-        <span>2.4 MB</span>
-      </div>
-    </a>
-  </div>
-
-  {/* Submission */}
-  <div className={styles.submitCard}>
-    <span className={styles.submitted}>SUBMITTED TO</span>
-    <h4>Global Sustainability AI Hackathon 2024</h4>
-    <p>📅 MAY 15–18, 2024</p>
-  </div>
-</div>
-
+          {/* Hackathon */}
+          <div className={styles.submitCard}>
+            <span className={styles.submitted}>SUBMITTED TO</span>
+            <h4>{project.hackathonId?.name}</h4>
+            <p>
+              📅 {project.hackathonId?.startDate} –{" "}
+              {project.hackathonId?.endDate}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

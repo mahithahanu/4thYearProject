@@ -37,6 +37,7 @@ import ParticipantsPage from "./OrganizerhackathonDetail/ParticipantsPage.jsx";
 import PublishingPage from "./OrganizerhackathonDetail/PublishingPage.jsx";
 import OrganizerProjectsPage from "./OrganizerhackathonDetail/ProjectsPage.jsx";
 import TeamManagement from "./components/TeamManagement.jsx";
+import FormTeams from "./OrganizerhackathonDetail/FormTeams.jsx";
 
 function App() {
   return (
@@ -59,12 +60,12 @@ function App() {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:id" element={<ProjectDetails />} />
           <Route path="/hackthondetails/:id" element={<HackathonDetails />} />
-          <Route path="/studenthackathonform" element={<StudentHackathonForm />} />
+          <Route path="/studenthackathonform/:id" element={<StudentHackathonForm />} />
           <Route path="/workplacetaskdetails" element={<TaskBoard />} />
         </Route>
 
         <Route path="/chat" element={<ChatsPage />} />
-        <Route path="/teamanalysis" element={<TeamAnalysis />} />
+        <Route path="/teamanalysis/:type/:teamName" element={<TeamAnalysis />} />
         <Route path="/assessment" element={<Assessment />} />
 
 
@@ -90,6 +91,7 @@ function App() {
             <Route path="participants" element={<ParticipantsPage />} />
             <Route path="Organizerproject" element={<OrganizerProjectsPage />} />
             <Route path="publishing" element={<PublishingPage />} />
+            <Route path="form-teams" element={<FormTeams />} />
           </Route>
         </Route>
       </Routes>

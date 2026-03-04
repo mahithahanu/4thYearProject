@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function OrganizerHackathonCard() {
   const [hackathons, setHackathons] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // ✅ move this to top
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchHackathons = async () => {
@@ -35,9 +35,12 @@ export default function OrganizerHackathonCard() {
     fetchHackathons();
   }, []);
 
- 
-
   if (loading) return <p>Loading hackathons...</p>;
+
+  // ⭐ Get only the latest 3 hackathons
+  const recentHackathons = hackathons
+    .sort((a, b) => new Date(b.hackathonStart) - new Date(a.hackathonStart))
+    .slice(0, 3);
 
   return (
     <div className={styles.section}>
@@ -48,17 +51,20 @@ export default function OrganizerHackathonCard() {
           <p>Manage and track your posted hackathons.</p>
         </div>
 
-        <button className={styles.viewAll}>
+        <button
+          className={styles.viewAll}
+          onClick={() => navigate("/my-hackathons")}
+        >
           View All <ArrowRight size={16} />
         </button>
       </div>
 
       {/* Cards */}
       <div className={styles.wrapper}>
-        {hackathons.length === 0 ? (
+        {recentHackathons.length === 0 ? (
           <p>No hackathons posted yet.</p>
         ) : (
-          hackathons.map((item) => (
+          recentHackathons.map((item) => (
             <div className={styles.card} key={item._id}>
               
               {/* Top Tags */}
@@ -73,6 +79,7 @@ export default function OrganizerHackathonCard() {
                       .toUpperCase()}
                   </span>
                 )}
+
                 <span className={styles.modeTag}>
                   {item.mode?.toUpperCase()}
                 </span>
@@ -87,7 +94,9 @@ export default function OrganizerHackathonCard() {
               {/* Button */}
               <button
                 className={styles.button}
-                onClick={() =>navigate(`/manage-hackathon/${item._id}`) } // ✅ correct id usage
+                onClick={() =>
+                  navigate(`/manage-hackathon/${item._id}`)
+                }
               >
                 Manage Hackathon <ArrowRight size={16} />
               </button>

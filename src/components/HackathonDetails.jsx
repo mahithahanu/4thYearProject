@@ -145,7 +145,7 @@ export default function HackathonDetails() {
           <div className={styles.actions}>
             <button
               className={styles.primaryBtn}
-              onClick={() => navigate("/studenthackathonform")}
+              onClick={() =>  navigate(`/studenthackathonform/${id}`)}
               disabled={
                 hackathon.registrationEnd &&
                 new Date(hackathon.registrationEnd) < new Date()

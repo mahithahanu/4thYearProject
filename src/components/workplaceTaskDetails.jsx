@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./workplaceTaskDetails.module.css";
+import axios from "axios";
 
 /* ===== DATE FORMATTER ===== */
 const formatDate = (isoDate) => {
@@ -12,32 +13,37 @@ const formatDate = (isoDate) => {
 };
 
 export default function TaskBoard() {
-  const [showModal, setShowModal] = useState(false);
-  const [draggedTask, setDraggedTask] = useState(null);
+  const [data, setData] = useState(null);
 
   const [tasks, setTasks] = useState({
     todo: [],
-    inProgress: [
-      {
-        title: "Create Hero Section",
-        date: "2024-04-14",
-        difficulty: "Intermediate",
-      },
-    ],
-    completed: [
-      {
-        title: "Create Contact",
-        date: "2024-04-12",
-        difficulty: "Easy",
-      },
-    ],
+    inProgress: [],
+    completed: [],
   });
+
+  const [showModal, setShowModal] = useState(false);
+  const [draggedTask, setDraggedTask] = useState(null);
 
   const [newTask, setNewTask] = useState({
     title: "",
     date: "",
     difficulty: "",
   });
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8003/api/workplace/details"
+        );
+        setData(res.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchDetails();
+  }, []);
 
   const isFormValid =
     newTask.title.trim() &&
@@ -56,7 +62,6 @@ export default function TaskBoard() {
     setShowModal(false);
   };
 
-  /* ===== DRAG HANDLERS ===== */
   const handleDragStart = (task, from) => {
     setDraggedTask({ task, from });
   };
@@ -78,35 +83,33 @@ export default function TaskBoard() {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
-        {/* ===== DETAILED CARD ===== */}
+        {/* ===== PROJECT INFO ===== */}
         <div className={styles.cardContainer}>
           <div className={styles.cardMetaCard}>
             <h2 className={styles.cardTitle}>
-              Build a Responsive Landing Page
+              {data?.project?.title || "No Project"}
             </h2>
+
             <div className={styles.cardMeta}>
               <span className={styles.due}>
-                Due: {formatDate("2024-04-25")}
+                Due: {formatDate(data?.hackathon?.end)}
               </span>
+
               <span className={styles.difficulty}>
-                Difficulty: Intermediate
+                Theme: {data?.hackathon?.theme}
               </span>
-              <span className={styles.skill}>HTML</span>
-              <span className={styles.skill}>CSS</span>
             </div>
           </div>
 
           <div className={styles.cardDescriptionCard}>
             <p className={styles.cardDescription}>
-              Create a responsive landing page for a mock product. Ensure the
-              page is mobile-friendly and visually appealing, including a hero
-              section, features list, and contact form. Submit your GitHub
-              repository link with your completed page.
+              {data?.project?.description ||
+                "Project description not available"}
             </p>
           </div>
         </div>
 
-        {/* ===== TASK BOARD ===== */}
+        {/* ===== KANBAN BOARD ===== */}
         <div className={styles.board}>
           <TaskColumn
             title="To Do"
@@ -137,7 +140,6 @@ export default function TaskBoard() {
             onDrop={() => handleDrop("completed")}
             onDragStart={handleDragStart}
             type="completed"
-            setTasks={setTasks}
           />
         </div>
       </div>
@@ -148,16 +150,15 @@ export default function TaskBoard() {
           <div className={styles.modal}>
             <h3>Add New Task</h3>
 
-            <label className={styles.label}>Task Title</label>
             <input
               className={styles.input}
+              placeholder="Task Title"
               value={newTask.title}
               onChange={(e) =>
                 setNewTask({ ...newTask, title: e.target.value })
               }
             />
 
-            <label className={styles.label}>Deadline</label>
             <input
               type="date"
               className={styles.input}
@@ -167,17 +168,21 @@ export default function TaskBoard() {
               }
             />
 
-            <label className={styles.label}>Difficulty</label>
             <select
               className={styles.input}
               value={newTask.difficulty}
               onChange={(e) =>
-                setNewTask({ ...newTask, difficulty: e.target.value })
+                setNewTask({
+                  ...newTask,
+                  difficulty: e.target.value,
+                })
               }
             >
               <option value="">Select difficulty</option>
               <option value="Easy">Easy</option>
-              <option value="Intermediate">Intermediate</option>
+              <option value="Intermediate">
+                Intermediate
+              </option>
               <option value="Hard">Hard</option>
             </select>
 
@@ -202,17 +207,8 @@ function TaskColumn({
   onDrop,
   onDragStart,
   type,
-  setTasks,
   children,
 }) {
-  const handleDelete = (task) => {
-    if (!setTasks) return;
-    setTasks((prev) => ({
-      ...prev,
-      completed: prev.completed.filter((t) => t !== task),
-    }));
-  };
-
   return (
     <div
       className={styles.column}
@@ -227,7 +223,6 @@ function TaskColumn({
           task={task}
           type={type}
           onDragStart={onDragStart}
-          onDelete={handleDelete}
         />
       ))}
 
@@ -237,90 +232,26 @@ function TaskColumn({
 }
 
 /* ===== TASK CARD ===== */
-function TaskCard({ task, type, onDragStart, onDelete }) {
-  const [showMenu, setShowMenu] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
-
-  useEffect(() => {
-    const close = () => setShowMenu(false);
-    document.addEventListener("click", close);
-    return () => document.removeEventListener("click", close);
-  }, []);
-
+function TaskCard({ task, type, onDragStart }) {
   return (
-    <>
-      <div
-        className={`${styles.taskCard} ${
-          type === "completed" ? styles.completedCard : ""
-        }`}
-        draggable={type !== "completed"}
-        onDragStart={() => type !== "completed" && onDragStart(task, type)}
-      >
-        {type === "completed" && (
-  <>
-    <span
-      className={styles.dots}
-      onClick={(e) => {
-        e.stopPropagation();
-        setShowMenu(!showMenu);
-      }}
+    <div
+      className={`${styles.taskCard} ${
+        type === "completed" ? styles.completedCard : ""
+      }`}
+      draggable={type !== "completed"}
+      onDragStart={() =>
+        type !== "completed" && onDragStart(task, type)
+      }
     >
-      ⋮
-    </span>
+      <p className={styles.taskTitle}>{task.title}</p>
 
-    <span className={styles.tickBadge}>✓</span>
+      <p className={styles.taskDate}>
+        Due: {formatDate(task.date)}
+      </p>
 
-    {showMenu && (
-      <div className={styles.menu}>
-        <div
-          className={styles.menuItem}
-          onClick={() => {
-            setShowMenu(false);
-            setShowConfirm(true);
-          }}
-        >
-          Delete
-        </div>
-      </div>
-    )}
-  </>
-)}
-
-
-        <p className={styles.taskTitle}>{task.title}</p>
-        <p className={styles.taskDate}>
-          Due: {formatDate(task.date)}
-        </p>
-        <span className={styles.taskDifficulty}>{task.difficulty}</span>
-      </div>
-
-      {showConfirm && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
-            <h3>Delete Task</h3>
-            <p>Do you really want to delete this task?</p>
-
-            <div className={styles.confirmActions}>
-              <button
-                className={styles.yesBtn}
-                onClick={() => {
-                  onDelete(task);
-                  setShowConfirm(false);
-                }}
-              >
-                ✓ Yes
-              </button>
-
-              <button
-                className={styles.noBtn}
-                onClick={() => setShowConfirm(false)}
-              >
-                ✕ No
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+      <span className={styles.taskDifficulty}>
+        {task.difficulty}
+      </span>
+    </div>
   );
 }

@@ -56,9 +56,12 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
 }
+.grid input{
+  width: 90%;
+}
 
 .full {
-  width: 100%;
+  width: 98%;
   margin-top: 10px;
 }
 
@@ -136,7 +139,7 @@ select:focus {
 
 
 .resumeBox {
-  width: 100%;
+  width: 95%;
   padding: 32px;
   margin: 14px 0 28px;
   cursor: pointer;

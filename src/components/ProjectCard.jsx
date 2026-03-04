@@ -1,11 +1,15 @@
 import styles from "./ProjectCard.module.css";
 
-const ProjectCard = ({ project,onClick }) => {
+const ProjectCard = ({ project, onClick }) => {
   return (
     <div className={styles.card} onClick={onClick}>
       <div
         className={styles.image}
-        style={{ backgroundImage: `url(${project.image})` }}
+        style={{
+          backgroundImage: `url(${
+            project.image || "https://via.placeholder.com/300"
+          })`,
+        }}
       >
         <span
           className={`${styles.badge} ${
@@ -14,14 +18,16 @@ const ProjectCard = ({ project,onClick }) => {
               : styles.completed
           }`}
         >
-          {project.status}
+          {project.status || "DRAFT"}
         </span>
       </div>
 
       <div className={styles.body}>
         <h4>{project.title}</h4>
         <p>{project.description}</p>
-        <button className={styles.viewBtn}>VIEW PROJECT →</button>
+        <button className={styles.viewBtn}>
+          VIEW PROJECT →
+        </button>
       </div>
     </div>
   );

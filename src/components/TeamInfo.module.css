@@ -211,8 +211,23 @@
 }
 .socials {
   display: flex;
-  gap: 14px;
-  margin-top: 14px;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.socialBtn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.3s ease;
+  background: #009688;
+  color: white;
+}
+
+.socialBtn:hover {
+  background: #00796b;
 }
 .linkedin {
   padding: 10px 18px;
