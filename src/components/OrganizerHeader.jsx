@@ -71,7 +71,7 @@ export default function OrganizerHeader() {
 
             {showDropdown && (
               <div className={styles.profileDropdown}>
-                <p onClick={() => navigate("/profile")}>Profile</p>
+                <p onClick={() => navigate(`/profile/${userEmail}`)}>Profile</p>
                 <p onClick={handleLogout}>Logout</p>
               </div>
             )}
