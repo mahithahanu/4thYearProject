@@ -45,11 +45,10 @@ export default function OrganizerHeader() {
 
       <ul className={`${styles.navLinks} ${menuOpen ? styles.active : ""}`}>
         <li onClick={() => handleNavigation("/organizer/dashboard")}>Home</li>
-        <li onClick={() => handleNavigation("/teamanalysis")}>Team Analysis</li>
-        <li onClick={() => handleNavigation("/participant")}>Participant Analysis</li>
-        <li onClick={() => handleNavigation("/edit team")}>Edit Team</li>
-        <li onClick={() => handleNavigation("/Post Hackathon")}>Post Hackathon</li>
-        <li onClick={() => handleNavigation("/Post projects")}>Projects</li>
+        <li onClick={() => handleNavigation("/teams")}>Team Analysis</li>
+        <li onClick={() => handleNavigation("/participantanalysis")}>Participant Analysis</li>
+        <li onClick={() => handleNavigation("/teammanagement")}>Edit Team</li>
+        <li onClick={() => handleNavigation("/posthackathon")}>Post Hackathon</li>
       </ul>
 
       <div className={styles.navBtns}>

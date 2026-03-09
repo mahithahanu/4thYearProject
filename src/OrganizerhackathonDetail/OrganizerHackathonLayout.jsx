@@ -2,7 +2,7 @@ import { NavLink, Outlet, useParams, useNavigate } from "react-router-dom";
 import styles from "./OrganizerLayout.module.css";
 
 export default function OrganizerHackathonLayout() {
- const { hackathonId } = useParams();
+  const { hackathonId } = useParams();
   const navigate = useNavigate();
 
   return (
@@ -31,9 +31,9 @@ export default function OrganizerHackathonLayout() {
           Projects
         </NavLink>
 
-        {/* <NavLink to={`publishing`} className={styles.link}>
-          Publishing
-        </NavLink> */}
+        <NavLink to={`resultspage`} className={styles.link}>
+          Results
+        </NavLink>
         <button
           className={styles.link}
           onClick={() => navigate(`form-teams`)}

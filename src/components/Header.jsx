@@ -48,8 +48,8 @@ export default function Header() {
         <li onClick={() => handleNavigation("/workplace")}>Workplace</li>
         <li onClick={() => handleNavigation("/projects")}>Project Info</li>
         <li onClick={() => handleNavigation("/TeamInfo")}>Team Info</li>
-        <li onClick={() => handleNavigation("/mentorship")}>Mentorship</li>
-        <li onClick={() => handleNavigation("/skill-progress")}>Skill Progress</li>
+        <li onClick={() => handleNavigation("/allhackathons")}>Hackathons</li>
+        <li onClick={() => handleNavigation("/result")}>Results</li>
       </ul>
 
       <div className={styles.navBtns}>
@@ -71,7 +71,7 @@ export default function Header() {
 
             {showDropdown && (
               <div className={styles.profileDropdown}>
-                <p onClick={() => navigate("/profile")}>Profile</p>
+                <p onClick={() => navigate(`/profile/${userEmail}`)}>Profile</p>
                 <p onClick={handleLogout}>Logout</p>
               </div>
             )}

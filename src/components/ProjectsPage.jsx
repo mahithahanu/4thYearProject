@@ -13,7 +13,7 @@ const ProjectsPage = () => {
   useEffect(() => {
     const fetchMyProjects = async () => {
       try {
-        const token = localStorage.getItem("token"); // or wherever you store it
+        const token = localStorage.getItem("token");
 
         const res = await axios.get(
           "http://localhost:8003/api/projects/my-projects",
@@ -23,6 +23,7 @@ const ProjectsPage = () => {
             },
           }
         );
+
         console.log("MY PROJECTS 👉", res.data);
 
         setProjects(res.data);
@@ -42,14 +43,18 @@ const ProjectsPage = () => {
 
       <main className={styles.content}>
         <h2>My Projects</h2>
+
         <p className={styles.subtitle}>
           Projects created by you
         </p>
 
         <div className={styles.tabs}>
-          <button className={styles.activeTab}>All Projects</button>
+          <button className={styles.activeTab}>
+            All Projects
+          </button>
         </div>
 
+        {/* Loading */}
         {loading ? (
           <p>Loading projects...</p>
         ) : projects.length === 0 ? (
@@ -60,7 +65,14 @@ const ProjectsPage = () => {
               <ProjectCard
                 key={p._id}
                 project={p}
-                onClick={() => navigate(`/projects/${p._id}`)}
+                banner={
+                  p.banner
+                    ? `http://localhost:8003/${p.banner}`
+                    : null
+                }
+                onClick={() =>
+                  navigate(`/projects/${p._id}`)
+                }
               />
             ))}
           </div>

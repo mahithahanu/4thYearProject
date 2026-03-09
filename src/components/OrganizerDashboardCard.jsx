@@ -53,7 +53,7 @@ export default function OrganizerHackathonCard() {
 
         <button
           className={styles.viewAll}
-          onClick={() => navigate("/my-hackathons")}
+          onClick={() => navigate("/viewall")}
         >
           View All <ArrowRight size={16} />
         </button>

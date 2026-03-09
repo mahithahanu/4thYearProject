@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function HackathonCard() {
+export default function DashboardHackathonCards() {
 
   const [hackathons, setHackathons] = useState([]);
   const navigate = useNavigate();
@@ -20,6 +20,8 @@ export default function HackathonCard() {
           `http://localhost:8003/api/register/registered?email=${email}`
         );
 
+        console.log("Registered hackathons:", res.data);
+
         setHackathons(res.data || []);
 
       } catch (err) {
@@ -30,11 +32,6 @@ export default function HackathonCard() {
     fetchHackathons();
 
   }, []);
-
-  // navigate function
-  const handleExploreClick = (hackathonId) => {
-    navigate(`/hackthondetails/${hackathonId}`);
-  };
 
   return (
     <div className={styles.section}>
@@ -48,7 +45,7 @@ export default function HackathonCard() {
 
         <button
           className={styles.viewAll}
-          onClick={() => navigate("/view-all-frontend")}
+          onClick={() => navigate("/view-all")}
         >
           View All Hackathons <ArrowRight size={16} />
         </button>
@@ -56,13 +53,22 @@ export default function HackathonCard() {
 
       {/* Cards */}
       <div className={styles.wrapper}>
-        {hackathons.map((item) => (
+
+        {hackathons.length === 0 && (
+          <p>No registered hackathons yet</p>
+        )}
+
+        {hackathons.slice(0, 3).map((item) => (
+
           <div className={styles.card} key={item._id}>
 
             <div className={styles.topTags}>
               <span className={styles.dateTag}>
-                {new Date(item.hackathonStart).toDateString()}
+                {item.hackathonStart
+                  ? new Date(item.hackathonStart).toDateString()
+                  : "TBA"}
               </span>
+
               <span className={styles.modeTag}>
                 {item.mode?.toUpperCase()}
               </span>
@@ -74,13 +80,15 @@ export default function HackathonCard() {
 
             <button
               className={styles.button}
-              onClick={() => handleExploreClick(item._id)}
+              onClick={() => navigate(`/hackathon/${item._id}`)}
             >
               Explore Hackathon <ArrowRight size={16} />
             </button>
 
           </div>
+
         ))}
+
       </div>
     </div>
   );

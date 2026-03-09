@@ -1,66 +1,135 @@
 import styles from "./TimeLine.module.css";
-import { FaUserPlus, FaPlay, FaFlagCheckered } from "react-icons/fa";
+import {
+  FaUserPlus,
+  FaPlay,
+  FaFlagCheckered,
+  FaCalendarAlt,
+  FaCode,
+  FaUsers,
+  FaTrophy,
+  FaMicrophone
+} from "react-icons/fa";
 
-/* ===== STATIC TIMELINE DATA ===== */
-const timelineData = [
-  {
-    id: 1,
-    title: "Registration Phase",
-    time: "Now – Oct 10",
-    description:
-      "Create your SkillSync profile and join or build your dream team.",
-    icon: FaUserPlus,
-    position: "right",
-  },
-  {
-    id: 2,
-    title: "Hacking Begins",
-    time: "Oct 10, 9:00 AM",
-    description:
-      "Kickoff ceremony and official problem statement release.",
-    icon: FaPlay,
-    position: "left",
-  },
-  {
-    id: 3,
-    title: "Submission",
-    time: "Oct 12, 9:00 AM",
-    description:
-      "Project deadline. Submit your code and demo video.",
-    icon: FaFlagCheckered,
-    position: "right",
-  },
-  
-];
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function Timeline() {
+/* Map icon names from backend */
+const iconMap = {
+  users: FaUsers,
+  play: FaPlay,
+  flag: FaFlagCheckered,
+  code: FaCode,
+  trophy: FaTrophy,
+  mic: FaMicrophone,
+  register: FaUserPlus
+};
+
+export default function Timeline({ hackathonId }) {
+
+  const [phases, setPhases] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+
+    const fetchTimeline = async () => {
+      try {
+
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get(
+          `http://localhost:8003/api/timeline/${hackathonId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
+        setPhases(res.data || []);
+
+      } catch (error) {
+        console.error("Failed to fetch timeline:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (hackathonId) {
+      fetchTimeline();
+    }
+
+  }, [hackathonId]);
+
+
+  /* Loading State */
+  if (loading) {
+    return (
+      <div className={styles.wrapper}>
+        <h3 className={styles.heading}>Timeline / Schedule</h3>
+        <p>Loading timeline...</p>
+      </div>
+    );
+  }
+
+
+  /* Empty Timeline */
+  if (!phases || phases.length === 0) {
+    return (
+      <div className={styles.wrapper}>
+        <h3 className={styles.heading}>Timeline / Schedule</h3>
+        <p>No timeline available</p>
+      </div>
+    );
+  }
+
+
   return (
     <div className={styles.wrapper}>
-      <h3 className={styles.heading}>📅 Timeline / Schedule</h3>
+
+      <h3 className={styles.heading}>Timeline / Schedule</h3>
 
       <div className={styles.timeline}>
+
         {/* Center Line */}
         <div className={styles.line}></div>
 
-        {timelineData.map((item) => {
-          const Icon = item.icon;
+        {phases.map((item, index) => {
+
+          const Icon = iconMap[item.icon] || FaCalendarAlt;
+
+          const position = index % 2 === 0 ? "right" : "left";
+
+          const start = new Date(item.startDate).toLocaleString();
+          const end = new Date(item.endDate).toLocaleString();
 
           return (
             <div
-              key={item.id}
-              className={`${styles.item} ${styles[item.position]}`}
+              key={item._id}
+              className={`${styles.item} ${styles[position]}`}
             >
+
+              {/* Timeline Icon */}
               <div className={styles.icon}>
-                <Icon size={14} style={{ transform: "none" }} />
+                <Icon size={14} />
               </div>
 
+              {/* Timeline Card */}
               <div className={styles.card}>
+
                 <div className={styles.cardHeader}>
+
                   <h4>{item.title}</h4>
-                  <span className={styles.time}>{item.time}</span>
+
+
                 </div>
+
                 <p>{item.description}</p>
+                 <span className={styles.time}>
+                    {start} – {end}
+                  </span>
+
               </div>
+
             </div>
           );
         })}

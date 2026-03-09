@@ -1,0 +1,249 @@
+.wrapper {
+  background: #f5f7f8;
+  padding: 40px;
+  font-family: "Inter", sans-serif;
+  color: #0f172a;
+}
+
+/* ================= TOP ================= */
+
+.topCard {
+  background: linear-gradient(180deg, #eef9f8 0%, #ffffff 100%);
+  border: 1px solid #d7eeee;
+  border-radius: 18px;
+  padding: 50px 30px;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.iconCircle {
+  width: 70px;
+  height: 70px;
+  background: #22d3c5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+  color: #0f172a;
+  line-height: 0;
+}
+
+.iconCircle svg {
+  display: block;
+}
+
+.topCard h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.topCard h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #22d3c5;
+  margin-bottom: 15px;
+}
+
+.topCard p {
+  max-width: 620px;
+  margin: auto;
+  color: #475569;
+  font-size: 15px;
+}
+
+/* ================= GRID ================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+}
+
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* ================= CARD ================= */
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 22px;
+  border: 1px solid #e6ecef;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;   /* keep items on left */
+  gap: 8px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  width: fit-content;            /* prevents stretching */
+}
+
+.cardTitle span {
+  white-space: nowrap;           /* keeps text beside icon */
+}
+/* ================= IMAGE ================= */
+
+.image {
+  height: 210px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, #0f2f2f, #153b3b);
+}
+
+/* ================= TEXT ================= */
+
+.description {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* ================= BUTTONS ================= */
+
+.buttonRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.lightBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.lightBtn svg {
+  vertical-align: middle;
+}
+.primaryBtn {
+  margin-left: auto;
+  background: #22d3c5;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.darkBtn {
+  background: #0f172a;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 15px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.shareBtn {
+  margin-left: auto;
+  background: #f1f5f9;
+  border: none;
+  padding: 9px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* ================= PROFILE ================= */
+
+.profileRow {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background: #d1f5f1;
+  border-radius: 50%;
+}
+
+/* ================= SCORE ================= */
+
+.scoreItem {
+  margin-bottom: 16px;
+}
+.scoreTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.scoreValue {
+  color: #22d3c5;
+  font-weight: 600;
+}
+
+.progress {
+  height: 6px;
+  background: #e6f2f1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: #22d3c5;
+}
+
+/* ================= OVERALL ================= */
+
+.overallBox {
+  background: #eef9f8;
+  border-radius: 12px;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.overallBox span {
+  font-size: 12px;
+  color: #64748b;
+  letter-spacing: 1px;
+}
+
+.overallBox h1 {
+  font-size: 40px;
+  margin-top: 5px;
+  color: #22d3c5;
+}
+
+/* ================= CERTIFICATE ================= */
+
+.certificate {
+  background: #22d3c5;
+  color: #062f2f;
+  text-align: center;
+}
+
+.certificate h3 {
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.certificate p {
+  font-size: 14px;
+}

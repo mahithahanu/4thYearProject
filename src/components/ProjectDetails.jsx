@@ -14,6 +14,7 @@ export default function ProjectDetails() {
         const res = await axios.get(
           `http://localhost:8003/api/projects/${id}`
         );
+        console.log("PROJECT DETAILS 👉", res.data);
         setProject(res.data);
       } catch (err) {
         console.error(err);
@@ -31,8 +32,8 @@ export default function ProjectDetails() {
       <div className={styles.header}>
         <div className={styles.projectInfo}>
           <div>
-            <h1>{project.title}</h1>
-            <p>by {project.teamName || "Team"}</p>
+            <h1>{project.projectName}</h1>
+            <p>by {project.hackathonId?.name || "Team"}</p>
 
             <div className={styles.tags}>
               {project.tags?.map((tag, i) => (
@@ -71,17 +72,8 @@ export default function ProjectDetails() {
         <div className={styles.right}>
           {/* Assets */}
           <div className={styles.assetsCard}>
-            <h5>📁 PROJECT ASSETS</h5>
-
-            {project.githubLink && (
-              <a href={project.githubLink} target="_blank" rel="noreferrer">
-                <FaGithub />
-                <div>
-                  <strong>GitHub Repository</strong>
-                  <span>Source Code</span>
-                </div>
-              </a>
-            )}
+            <h5>📁 Submission Deadline</h5>
+            <p>{new Date(project.submissionDeadline).toLocaleString()}</p>
 
             {project.assets?.problemStatementPdf && (
               <a

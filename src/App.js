@@ -39,7 +39,10 @@ import OrganizerProjectsPage from "./OrganizerhackathonDetail/ProjectsPage.jsx";
 import TeamManagement from "./components/TeamManagement.jsx";
 import FormTeams from "./OrganizerhackathonDetail/FormTeams.jsx";
 import Profile from "./components/profile.jsx";
-
+import ViewAll from "./components/viewAll.jsx";
+import ViewAllFrontend from "./components/viewAllFrontend.jsx";
+import Result from "./components/Result.jsx";
+import ResultsPage from "./OrganizerhackathonDetail/ResultsPage.jsx";
 function App() {
   return (
     <BrowserRouter>
@@ -63,12 +66,15 @@ function App() {
           <Route path="/hackthondetails/:id" element={<HackathonDetails />} />
           <Route path="/studenthackathonform/:id" element={<StudentHackathonForm />} />
           <Route path="/workplacetaskdetails" element={<TaskBoard />} />
+          <Route path="/result" element={<Result />} />
         </Route>
 
         <Route path="/chat" element={<ChatsPage />} />
         <Route path="/teamanalysis/:type/:teamName" element={<TeamAnalysis />} />
         <Route path="/assessment" element={<Assessment />} />
         <Route path="/profile/:userEmail" element={<Profile />} />
+        <Route path="/viewall" element={<ViewAll />} />
+        <Route path="/view-all-frontend" element={<ViewAllFrontend />} />
 
 
         <Route element={<OrganizerLayout />}>
@@ -94,6 +100,7 @@ function App() {
             <Route path="Organizerproject" element={<OrganizerProjectsPage />} />
             <Route path="publishing" element={<PublishingPage />} />
             <Route path="form-teams" element={<FormTeams />} />
+            <Route path="resultspage" element={<ResultsPage />} />
           </Route>
         </Route>
       </Routes>

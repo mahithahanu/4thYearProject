@@ -12,23 +12,35 @@ export default function TeamManagement() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [teams, setTeams] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
+const email = user?.email;
 
   /* ---------- FETCH TEAMS ---------- */
-  useEffect(() => {
-    axios
-      .get("http://localhost:8003/api/editteam")
-      .then((res) => {
-        if (res.data?.teams) {
-          setTeams(res.data.teams);
-        } else {
-          setTeams([]);
-        }
-      })
-      .catch((err) => {
-        console.error("Error fetching teams:", err);
+ useEffect(() => {
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const email = user?.email;
+
+  if (!email) {
+    console.error("User email not found");
+    return;
+  }
+
+  axios
+    .get(`http://localhost:8003/api/editteam?email=${email}`)
+    .then((res) => {
+      if (res.data?.teams) {
+        setTeams(res.data.teams);
+      } else {
         setTeams([]);
-      });
-  }, []);
+      }
+    })
+    .catch((err) => {
+      console.error("Error fetching teams:", err);
+      setTeams([]);
+    });
+
+}, []);
 
   /* ---------- SEARCH ---------- */
   const filteredTeams = useMemo(() => {

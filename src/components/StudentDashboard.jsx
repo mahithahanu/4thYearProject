@@ -89,9 +89,10 @@ export default function StudentDashboard() {
             <p>All Hackathons</p>
           </div>
 
-          <div className={`${styles.card} ${styles.white}`}>
-            <h3>Skill Progress</h3>
-            <p>Track your growth</p>
+          <div className={`${styles.card} ${styles.white}`}
+          onClick={() => handleNavigation("/result")}>
+            <h3>Result</h3>
+            <p>Know your performance</p>
           </div>
         </div>
       </div>

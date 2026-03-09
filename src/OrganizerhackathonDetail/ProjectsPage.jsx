@@ -24,6 +24,7 @@ export default function OrganizerProjectsPage() {
   const [status, setStatus] = useState("Draft");
   const [submissionDate, setSubmissionDate] = useState("");
   const [description, setDescription] = useState("");
+  const [banner, setBanner] = useState(null);
 
   /* ---------------- PARTICIPANT BENEFITS STATE ---------------- */
 
@@ -88,69 +89,80 @@ export default function OrganizerProjectsPage() {
   /* ---------------- CREATE PROJECT ---------------- */
 
   const handleSaveProject = async () => {
-    try {
-      const token = localStorage.getItem("token");
+  try {
+    const token = localStorage.getItem("token");
 
-      const benefits = {
-        certificates: {
-          participation: certificates.includes(
-            "Participation Certificate"
-          ),
-          winner: certificates.includes("Winner Certificate"),
-        },
-        cashPrize: {
-          enabled: cashPrize,
-          prizes: cashPrize
-            ? prizes.map((p) => ({
-                position: p.title,
-                amount: Number(p.amount),
-              }))
-            : [],
-        },
-      };
+    const benefits = {
+      certificates: {
+        participation: certificates.includes("Participation Certificate"),
+        winner: certificates.includes("Winner Certificate"),
+      },
+      cashPrize: {
+        enabled: cashPrize,
+        prizes: cashPrize
+          ? prizes.map((p) => ({
+              position: p.title,
+              amount: Number(p.amount),
+            }))
+          : [],
+      },
+    };
 
-      const statusMap = {
-        Draft: "draft",
-        "In Review": "published",
-        Finished: "closed",
-      };
+    const statusMap = {
+      Draft: "draft",
+      "In Review": "published",
+      Finished: "closed",
+    };
 
-      const payload = {
-        hackathonId,
-        projectName,
-        description,
-        techStack: techStack
-          .split(",")
-          .map((t) => t.trim())
-          .filter(Boolean),
-        status: statusMap[status],
-        submissionDeadline: submissionDate
-          ? new Date(submissionDate).toISOString()
-          : null,
-        benefits,
-      };
+    const formData = new FormData();
 
-      await axios.post(
-        "http://localhost:8003/api/projects",
-        payload,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+    formData.append("hackathonId", hackathonId);
+    formData.append("projectName", projectName);
+    formData.append("description", description);
+    formData.append("status", statusMap[status]);
 
-      alert("Project created successfully 🎉");
+    formData.append(
+      "techStack",
+      JSON.stringify(
+        techStack.split(",").map((t) => t.trim()).filter(Boolean)
+      )
+    );
 
-      fetchProjects();
+    formData.append(
+      "submissionDeadline",
+      submissionDate
+        ? new Date(submissionDate).toISOString()
+        : null
+    );
 
-      /* ⭐ Collapse form after submit */
-      setShowForm(false);
-      setSubmitted(true);
+    formData.append("benefits", JSON.stringify(benefits));
 
-    } catch (err) {
-      console.error(err.response?.data || err);
-      alert("Error creating project ❌");
+    if (banner) {
+      formData.append("banner", banner);
     }
-  };
+
+    await axios.post(
+      "http://localhost:8003/api/projects",
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    alert("Project created successfully 🎉");
+
+    fetchProjects();
+    setShowForm(false);
+    setSubmitted(true);
+
+  } catch (err) {
+    console.error(err.response?.data || err);
+    alert("Error creating project ❌");
+  }
+};
 
   /* ---------------- UI ---------------- */
 
@@ -246,6 +258,16 @@ export default function OrganizerProjectsPage() {
                 onChange={(e) =>
                   setDescription(e.target.value)
                 }
+              />
+            </div>
+
+            {/* Banner Upload */}
+            <div>
+              <label>Project Banner</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setBanner(e.target.files[0])}
               />
             </div>
 

@@ -23,6 +23,7 @@ export default function ProjectCards() {
       const res = await axios.get("http://localhost:8003/api/hackathons/all", {
         params: { email: userEmail },
       });
+      console.log(res.data);
       setHackathons(res.data);
       setFilteredHackathons(res.data);
     } catch (err) {

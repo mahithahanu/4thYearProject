@@ -10,34 +10,57 @@ const getInitials = (name) =>
     .toUpperCase();
 
 export default function Profile() {
+
   const [search, setSearch] = useState("");
   const [members, setMembers] = useState([]);
   const [selectedMember, setSelectedMember] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  // FETCH MEMBERS
+  /* ================= FETCH MEMBERS ================= */
+
   useEffect(() => {
     fetchMembers();
   }, [search]);
 
   const fetchMembers = async () => {
-    try {
-      const res = await axios.get(
-        `http://localhost:8003/api/members?search=${search}`
-      );
-      setMembers(res.data);
+  try {
 
-      if (res.data.length > 0 && !selectedMember) {
-        setSelectedMember(res.data[0]);
+    setLoading(true);
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const res = await axios.get(
+      `http://localhost:8003/api/members/members`,
+      {
+        params: {
+          email: user.email,
+          search: search
+        }
       }
-    } catch (err) {
-      console.log(err);
+    );
+
+    setMembers(res.data);
+
+    if (res.data.length > 0) {
+      setSelectedMember(res.data[0]);
+    } else {
+      setSelectedMember(null);
     }
-  };
+
+  } catch (err) {
+    console.error("Failed to fetch members:", err);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className={styles.wrapper}>
-      {/* SIDEBAR */}
+
+      {/* ================= SIDEBAR ================= */}
+
       <aside className={styles.sidebar}>
+
         <input
           className={styles.search}
           placeholder="Search members..."
@@ -46,6 +69,13 @@ export default function Profile() {
         />
 
         <div className={styles.memberList}>
+
+          {loading && <p>Loading members...</p>}
+
+          {!loading && members.length === 0 && (
+            <p>No members found</p>
+          )}
+
           {members.map((m) => (
             <div
               key={m._id}
@@ -54,6 +84,7 @@ export default function Profile() {
               }`}
               onClick={() => setSelectedMember(m)}
             >
+
               <div className={styles.avatar}>
                 {getInitials(m.name)}
               </div>
@@ -63,97 +94,122 @@ export default function Profile() {
                 <p className={styles.memberRole}>{m.role}</p>
               </div>
 
-              {m.isYou && (
-                <span className={styles.youBadge}>YOU</span>
-              )}
             </div>
           ))}
+
         </div>
       </aside>
 
-      {/* MAIN */}
+      {/* ================= MAIN ================= */}
+
       <main className={styles.main}>
-        {selectedMember && (
+
+        {selectedMember ? (
           <>
+
+            {/* PROFILE HEADER */}
+
             <div className={styles.header}>
+
               <div className={styles.profileCircle}>
                 {getInitials(selectedMember.name)}
               </div>
 
               <div className={styles.headerInfo}>
+
                 <h1>{selectedMember.name}</h1>
+
                 <p className={styles.email}>
                   {selectedMember.email}
                 </p>
 
                 <div className={styles.meta}>
+
                   <span className={styles.badge}>
                     {selectedMember.role?.toUpperCase()}
                   </span>
-                  <span className={styles.location}>
-                    {selectedMember.location}
-                  </span>
+
+                  {selectedMember.overall_score && (
+                    <span className={styles.score}>
+                      Score: {selectedMember.overall_score}
+                    </span>
+                  )}
+
                 </div>
 
-                <div className={styles.socials}>
-  {selectedMember.linkedin && (
-    <a
-      href={selectedMember.linkedin}
-      target="_blank"
-      rel="noreferrer"
-      className={styles.socialBtn}
-    >
-      LinkedIn
-    </a>
-  )}
+                {/* SOCIAL LINKS */}
 
-  {selectedMember.github && (
-    <a
-      href={selectedMember.github}
-      target="_blank"
-      rel="noreferrer"
-      className={styles.socialBtn}
-    >
-      GitHub
-    </a>
-  )}
-</div>
+                <div className={styles.socials}>
+
+                  {selectedMember.github && (
+                    <a
+                      href={selectedMember.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.socialBtn}
+                    >
+                      GitHub
+                    </a>
+                  )}
+
+                </div>
+
               </div>
             </div>
 
+
+            {/* CONTENT */}
+
             <div className={styles.content}>
-              {/* LEFT */}
+
+              {/* LEFT SIDE */}
+
               <div>
+
                 <h3>Top Skills</h3>
 
-                {selectedMember.skills?.map((skill) => (
-                  <Skill
-                    key={skill._id}
-                    name={skill.name}
-                    value={skill.value}
-                  />
-                ))}
+                {selectedMember.skills?.length > 0 ? (
+                  selectedMember.skills.map((skill, index) => (
+                    <Skill
+                      key={index}
+                      name={skill.name}
+                      value={skill.value}
+                    />
+                  ))
+                ) : (
+                  <p>No skills available</p>
+                )}
+
+
+                {/* CORE COMPETENCIES */}
 
                 <div className={styles.core}>
+
                   <h4 style={{ color: "#009688" }}>
                     CORE COMPETENCIES
                   </h4>
+
                   <div className={styles.tags}>
-                    <span>System Design</span>
-                    <span>Cloud Architecture</span>
-                    <span>Agile</span>
-                    <span>CI/CD</span>
-                    <span>Leadership</span>
+
+                    {selectedMember.skills?.map((skill, index) => (
+                      <span key={index}>{skill.name}</span>
+                    ))}
+
                   </div>
+
                 </div>
+
               </div>
 
-              {/* RIGHT */}
+
+              {/* RIGHT SIDE */}
+
               <div>
+
                 <h3>Professional Experience</h3>
 
-                {selectedMember.experience?.map(
-                  (exp, index) => (
+                {selectedMember.experience?.length > 0 ? (
+                  selectedMember.experience.map((exp, index) => (
                     <Timeline
                       key={index}
                       year={exp.year}
@@ -161,45 +217,74 @@ export default function Profile() {
                       company={exp.company}
                       desc={exp.desc}
                     />
-                  )
+                  ))
+                ) : (
+                  <p>No experience data</p>
                 )}
+
               </div>
+
             </div>
+
           </>
+        ) : (
+          <p>Select a member to view profile</p>
         )}
+
       </main>
+
     </div>
   );
 }
 
+
+/* ================= SKILL COMPONENT ================= */
+
 function Skill({ name, value }) {
+
   return (
     <div className={styles.skill}>
+
       <div className={styles.skillHeader}>
         <span>{name}</span>
         <span>{value}%</span>
       </div>
+
       <div className={styles.bar}>
         <div
           className={styles.fill}
           style={{ width: `${value}%` }}
         />
       </div>
+
     </div>
   );
 }
 
+
+/* ================= EXPERIENCE TIMELINE ================= */
+
 function Timeline({ year, title, company, desc }) {
+
   return (
     <div className={styles.timeline}>
+
       <div className={styles.line} />
+
       <div className={styles.circle} />
+
       <div className={styles.timelineContent}>
+
         <span className={styles.year}>{year}</span>
+
         <h4 className={styles.title}>{title}</h4>
+
         <p className={styles.company}>{company}</p>
+
         <p className={styles.desc}>{desc}</p>
+
       </div>
+
     </div>
   );
 }
