@@ -9,7 +9,7 @@ const ForgotPassword = () => {
 
   const handleSendOtp = async () => {
     try {
-      await axios.post("http://localhost:8003/forgot-password", { email });
+      await axios.post(`${process.env.REACT_APP_API_URL}/forgot-password`, { email });
 
       localStorage.setItem("resetEmail", email);
       navigate("/otp");

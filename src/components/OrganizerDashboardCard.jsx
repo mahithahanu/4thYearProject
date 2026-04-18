@@ -15,7 +15,7 @@ export default function OrganizerHackathonCard() {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          "http://localhost:8003/api/hackathons/my-hackathons",
+          `${process.env.REACT_APP_API_URL}/api/hackathons/my-hackathons`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

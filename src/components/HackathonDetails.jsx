@@ -33,7 +33,7 @@ export default function HackathonDetails() {
         const email = localStorage.getItem("userEmail");
 
         const res = await fetch(
-          `http://localhost:8003/api/hackathons/${id}?email=${email}`,
+          `${process.env.REACT_APP_API_URL}/api/hackathons/${id}?email=${email}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function HackathonDetails() {
         const email = localStorage.getItem("userEmail");
 
         const res = await fetch(
-          `http://localhost:8003/api/register/check?email=${email}&hackathonId=${id}`
+          `${process.env.REACT_APP_API_URL}/api/register/check?email=${email}&hackathonId=${id}`
         );
 
         const data = await res.json();
@@ -163,7 +163,7 @@ export default function HackathonDetails() {
         className={styles.heroCard}
         style={{
           backgroundImage: hackathon.banner
-            ? `url(http://localhost:8003${hackathon.banner})`
+            ? `url(${process.env.REACT_APP_API_URL}${hackathon.banner})`
             : "none",
         }}
       >

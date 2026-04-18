@@ -20,7 +20,7 @@ export default function Dashboard() {
         const email = localStorage.getItem("userEmail");
 
         const res = await axios.get(
-          `http://localhost:8003/api/workplace/dashboard?email=${email}`
+          `${process.env.REACT_APP_API_URL}/api/workplace/dashboard?email=${email}`
         );
 
         console.log("API RESPONSE:", res.data);

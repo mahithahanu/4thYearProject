@@ -26,7 +26,7 @@ export default function TimelinePage() {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `http://localhost:8003/api/timeline/${hackathonId}`,
+          `${process.env.REACT_APP_API_URL}/api/timeline/${hackathonId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -48,7 +48,7 @@ export default function TimelinePage() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:8003/api/timeline",
+        `${process.env.REACT_APP_API_URL}/api/timeline`,
         {
           hackathonId,
           title,
@@ -78,7 +78,7 @@ export default function TimelinePage() {
     if (!phaseToDelete) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8003/api/timeline/${phaseToDelete._id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/timeline/${phaseToDelete._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPhases((prev) => prev.filter((p) => p._id !== phaseToDelete._id));

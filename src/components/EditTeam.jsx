@@ -31,7 +31,7 @@ export default function EditTeamDetails() {
       try {
 
         const res = await axios.get(
-          `http://localhost:8003/api/editteam/${id}`
+          `${process.env.REACT_APP_API_URL}/api/editteam/${id}`
         );
 
         const team = res.data.team;
@@ -80,7 +80,7 @@ export default function EditTeamDetails() {
     try {
 
       await axios.put(
-        `http://localhost:8003/api/editteam/${id}/member/${formData.email}`,
+        `${process.env.REACT_APP_API_URL}/api/editteam/${id}/member/${formData.email}`,
         {
           name: formData.name,
           role: formData.role
@@ -114,7 +114,7 @@ export default function EditTeamDetails() {
     try {
 
       await axios.delete(
-        `http://localhost:8003/api/editteam/${id}/member/${deleteMember}`
+        `${process.env.REACT_APP_API_URL}/api/editteam/${id}/member/${deleteMember}`
       );
 
       setMembers((prev) =>
@@ -144,7 +144,7 @@ export default function EditTeamDetails() {
     try {
 
       await axios.put(
-        `http://localhost:8003/api/editteam/${id}`,
+        `${process.env.REACT_APP_API_URL}/api/editteam/${id}`,
         {
           name: teamName,
           description: description

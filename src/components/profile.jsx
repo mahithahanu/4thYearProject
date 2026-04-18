@@ -20,7 +20,7 @@ export default function Profile() {
   useEffect(() => {
 
     axios
-      .get(`http://localhost:8003/api/profile?email=${email}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/profile?email=${email}`)
       .then((res) => {
 
         setProfile(res.data);
@@ -53,7 +53,7 @@ export default function Profile() {
   const handleSave = async () => {
 
     await axios.put(
-      `http://localhost:8003/api/profile?email=${email}`,
+      `${process.env.REACT_APP_API_URL}/api/profile?email=${email}`,
       editData
     );
 

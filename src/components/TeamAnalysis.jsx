@@ -35,7 +35,7 @@ export default function Dashboard() {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `http://localhost:8003/api/events/team-analysis/${type}/${teamName}`
+          `${process.env.REACT_APP_API_URL}/api/events/team-analysis/${type}/${teamName}`
         );
   
         const result = await res.json();

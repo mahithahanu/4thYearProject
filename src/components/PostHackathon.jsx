@@ -149,7 +149,7 @@ const handlePublish = async () => {
   try {
     setLoading(true);
 
-    const res = await fetch("http://localhost:8003/api/hackathons", {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/hackathons`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

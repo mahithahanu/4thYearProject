@@ -37,7 +37,7 @@ export default function Timeline({ hackathonId }) {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          `http://localhost:8003/api/timeline/${hackathonId}`,
+          `${process.env.REACT_APP_API_URL}/api/timeline/${hackathonId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`

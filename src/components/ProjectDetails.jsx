@@ -12,7 +12,7 @@ export default function ProjectDetails() {
     const fetchProject = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8003/api/projects/${id}`
+          `${process.env.REACT_APP_API_URL}/api/projects/${id}`
         );
         console.log("PROJECT DETAILS 👉", res.data);
         setProject(res.data);
@@ -77,7 +77,7 @@ export default function ProjectDetails() {
 
             {project.assets?.problemStatementPdf && (
               <a
-                href={`http://localhost:8003/${project.assets.problemStatementPdf}`}
+                href={`${process.env.REACT_APP_API_URL}/${project.assets.problemStatementPdf}`}
                 target="_blank"
                 rel="noreferrer"
               >

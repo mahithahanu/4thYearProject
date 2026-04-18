@@ -17,7 +17,7 @@ export default function DashboardHackathonCards() {
         const email = localStorage.getItem("userEmail");
 
         const res = await axios.get(
-          `http://localhost:8003/api/register/registered?email=${email}`
+          `${process.env.REACT_APP_API_URL}/api/register/registered?email=${email}`
         );
 
         console.log("Registered hackathons:", res.data);

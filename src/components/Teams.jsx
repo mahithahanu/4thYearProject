@@ -14,7 +14,7 @@ export default function Teams() {
     const fetchEvent = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8003/api/events/${selectedType}`
+          `${process.env.REACT_APP_API_URL}/api/events/${selectedType}`
         );
         setEventData(res.data);
       } catch (error) {

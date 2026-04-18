@@ -94,7 +94,7 @@ const handleSubmit = async () => {
   formData.append("hackathonId", id);
 
   try {
-    const res = await fetch("http://localhost:8003/api/register", {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/register`, {
       method: "POST",
       body: formData,
     });
