@@ -14,7 +14,7 @@ export default function Result() {
       try {
 
         const res = await axios.get(
-          `http://localhost:8003/api/resultspage/results/${email}`
+          `${process.env.REACT_APP_API_URL}/api/resultspage/results/${email}`
         );
 
         setResult(res.data);

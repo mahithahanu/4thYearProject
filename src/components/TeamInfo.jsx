@@ -30,7 +30,7 @@ export default function Profile() {
     const user = JSON.parse(localStorage.getItem("user"));
 
     const res = await axios.get(
-      `http://localhost:8003/api/members/members`,
+      `${process.env.REACT_APP_API_URL}/api/members/members`,
       {
         params: {
           email: user.email,

@@ -3,7 +3,7 @@ import styles from "./ProjectCard.module.css";
 const ProjectCard = ({ project, onClick }) => {
 
   const bannerUrl = project.banner
-    ? `http://localhost:8003/${project.banner}`
+    ? `${process.env.REACT_APP_API_URL}/${project.banner}`
     : "https://via.placeholder.com/300";
 
   return (

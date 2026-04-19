@@ -70,7 +70,7 @@ export default function OrganizerProjectsPage() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:8003/api/projects/my-projects",
+        `${process.env.REACT_APP_API_URL}/api/projects/my-projects`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -142,7 +142,7 @@ export default function OrganizerProjectsPage() {
     }
 
     await axios.post(
-      "http://localhost:8003/api/projects",
+      `${process.env.REACT_APP_API_URL}/api/projects`,
       formData,
       {
         headers: {

@@ -42,13 +42,13 @@ export default function TaskBoard() {
         const email = localStorage.getItem("userEmail");
 
         const res = await axios.get(
-          `http://localhost:8003/api/workplace/details?email=${email}`
+          `${process.env.REACT_APP_API_URL}/api/workplace/details?email=${email}`
         );
 
         setData(res.data);
 
         const taskRes = await axios.get(
-          `http://localhost:8003/api/tasks/tasks?email=${email}`
+          `${process.env.REACT_APP_API_URL}/api/tasks/tasks?email=${email}`
         );
 
         const apiTasks = taskRes.data;
@@ -85,7 +85,7 @@ export default function TaskBoard() {
       const email = localStorage.getItem("userEmail");
 
       const res = await axios.post(
-        "http://localhost:8003/api/tasks/create-task",
+        `${process.env.REACT_APP_API_URL}/api/tasks/create-task`,
         {
           email,
           title: newTask.title,
@@ -115,7 +115,7 @@ export default function TaskBoard() {
     try {
 
       await axios.delete(
-        `http://localhost:8003/api/tasks/delete-task/${taskId}`
+        `${process.env.REACT_APP_API_URL}/api/tasks/delete-task/${taskId}`
       );
 
       setTasks((prev) => ({
@@ -141,7 +141,7 @@ export default function TaskBoard() {
     try {
 
       await axios.put(
-        `http://localhost:8003/api/tasks/update-task/${draggedTask.task._id}`,
+        `${process.env.REACT_APP_API_URL}/api/tasks/update-task/${draggedTask.task._id}`,
         { status: to }
       );
 

@@ -20,7 +20,7 @@ export default function ParticipantsPage() {
       try {
 
         const res = await axios.get(
-          `http://localhost:8003/api/register/participants/${hackathonId}`
+          `${process.env.REACT_APP_API_URL}/api/register/participants/${hackathonId}`
         );
 
         console.log("API Response:", res.data);

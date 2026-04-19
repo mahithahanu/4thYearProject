@@ -27,7 +27,7 @@ const email = user?.email;
   }
 
   axios
-    .get(`http://localhost:8003/api/editteam?email=${email}`)
+    .get(`${process.env.REACT_APP_API_URL}/api/editteam?email=${email}`)
     .then((res) => {
       if (res.data?.teams) {
         setTeams(res.data.teams);

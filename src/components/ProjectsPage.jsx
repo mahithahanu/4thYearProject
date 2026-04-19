@@ -16,7 +16,7 @@ const ProjectsPage = () => {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          "http://localhost:8003/api/projects/my-projects",
+          `${process.env.REACT_APP_API_URL}/api/projects/my-projects`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -67,7 +67,7 @@ const ProjectsPage = () => {
                 project={p}
                 banner={
                   p.banner
-                    ? `http://localhost:8003/${p.banner}`
+                    ? `${process.env.REACT_APP_API_URL}/${p.banner}`
                     : null
                 }
                 onClick={() =>

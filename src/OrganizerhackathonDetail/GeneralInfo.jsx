@@ -22,7 +22,7 @@ export default function GeneralInfoPage() {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          `http://localhost:8003/api/hackathons/${hackathonId}`,
+          `${process.env.REACT_APP_API_URL}/api/hackathons/${hackathonId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -61,7 +61,7 @@ export default function GeneralInfoPage() {
       }
 
       await axios.put(
-        `http://localhost:8003/api/hackathons/${hackathonId}/general-info`,
+        `${process.env.REACT_APP_API_URL}/api/hackathons/${hackathonId}/general-info`,
         formData,
         {
           headers: {

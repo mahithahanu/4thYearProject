@@ -26,7 +26,7 @@ export default function ResultsPage() {
       formData.append("resultsPdf", pdf);
 
       await axios.post(
-        `http://localhost:8003/api/resultspage/${hackathonId}/upload`,
+        `${process.env.REACT_APP_API_URL}/api/resultspage/${hackathonId}/upload`,
         formData,
         {
           headers: {

@@ -501,7 +501,7 @@ export default function SkillTrends() {
 
   // Fetch participants from backend
   useEffect(() => {
-    fetch("http://localhost:8003/api/participants/all")
+    fetch(`${process.env.REACT_APP_API_URL}/api/participants/all`)
       .then((res) => res.json())
       .then((data) => setParticipants(data))
       .catch((err) => console.error(err));
@@ -509,7 +509,7 @@ export default function SkillTrends() {
 
   // Fetch skill trends from backend
   useEffect(() => {
-    fetch("http://localhost:8003/api/skilltrends/all")
+    fetch(`${process.env.REACT_APP_API_URL}/api/skilltrends/all`)
       .then((res) => res.json())
       .then((data) => setSkillTrends(data))
       .catch((err) => console.error(err));
